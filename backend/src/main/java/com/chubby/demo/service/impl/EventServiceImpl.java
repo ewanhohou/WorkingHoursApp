@@ -2,6 +2,7 @@ package com.chubby.demo.service.impl;
 
 import com.chubby.demo.dao.EventDao;
 import com.chubby.demo.domain.Event;
+import com.chubby.demo.dto.EventDTO;
 import com.chubby.demo.service.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class EventServiceImpl implements EventService {
     private EventDao eventDao;
 
     @Override
-    public List<Event> findAll() {
+    public List<EventDTO> findAll() {
         return eventDao.findAll();
     }
 
     @Override
-    public Optional<List<Event>> findByEmpId(long empId) {
+    public Optional<List<EventDTO>> findByEmpId(long empId) {
         return Optional.of(eventDao.findByEmpId(empId));
     }
 

@@ -2,6 +2,7 @@ package com.chubby.demo.service.impl;
 
 import com.chubby.demo.dao.WageDao;
 import com.chubby.demo.domain.Wage;
+import com.chubby.demo.dto.WageDTO;
 import com.chubby.demo.service.WageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ public class WageServiceImpl implements WageService {
     private WageDao wageDao;
 
     @Override
-    public List<Wage> findAll() {
+    public List<WageDTO> findAll() {
         return wageDao.findAll();
     }
 
     @Override
-    public Optional<List<Wage>> findByEmpId(long empId) {
+    public Optional<List<WageDTO>> findByEmpId(long empId) {
         return Optional.of(wageDao.findByEmpId(empId));
     }
 

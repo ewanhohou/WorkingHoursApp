@@ -1,6 +1,7 @@
 package com.chubby.demo.dao;
 
 import com.chubby.demo.domain.Wage;
+import com.chubby.demo.dto.WageDTO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,13 @@ public interface WageDao {
     @Results(value = {
             @Result(property = "emp", column = "emp_id",
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
-    List<Wage> findAll();
+    List<WageDTO> findAll();
 
     @Select("SELECT * FROM wage WHERE emp_id = #{empId}")
-    List<Wage> findByEmpId(long empId);
+    @Results(value = {
+            @Result(property = "emp", column = "emp_id",
+                    one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
+    List<WageDTO> findByEmpId(long empId);
 
     @Insert("INSERT INTO wage (emp_Id, start_time, end_time, wage) VALUES(#{empId}, #{startTime}, #{endTime}, #{wage})")
     @Options(useGeneratedKeys = true, keyProperty = "wageSeq")

@@ -1,6 +1,7 @@
 package com.chubby.demo.dao;
 
 import com.chubby.demo.domain.Event;
+import com.chubby.demo.dto.EventDTO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,15 @@ public interface EventDao {
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById")),
             @Result(property = "cus", column = "cus_id",
                     one = @One(select = "com.chubby.demo.dao.CustomerDao.findById"))})
-    List<Event> findAll();
+    List<EventDTO> findAll();
 
     @Select("SELECT * FROM event WHERE emp_id = #{empId}")
-    List<Event> findByEmpId(long empId);
+    @Results(value = {
+            @Result(property = "emp", column = "emp_id",
+                    one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById")),
+            @Result(property = "cus", column = "cus_id",
+                    one = @One(select = "com.chubby.demo.dao.CustomerDao.findById"))})
+    List<EventDTO> findByEmpId(long empId);
 
     @Insert("INSERT INTO event (emp_Id, cus_Id, start_time, end_time) VALUES(#{empId}, #{cusId}, #{startTime}, #{endTime})")
     @Options(useGeneratedKeys = true, keyProperty = "eventSeq")

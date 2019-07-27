@@ -72,6 +72,7 @@
                                     <directory>${project.parent.basedir}/frontend/target/dist</directory>
                                     <includes>
                                         <include>static/</include>
+                                        <include>vendor/</include>
                                         <include>index.html</include>
                                         <include>favicon.ico</include>
                                     </includes>

@@ -22,7 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Optional<Customer> findById(long cusId) {
-        return customerDao.findById(cusId);
+        return Optional.of(customerDao.findById(cusId));
     }
 
     @Override

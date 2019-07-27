@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @Mapper
@@ -15,7 +14,7 @@ public interface CustomerDao {
     List<Customer> findAll();
 
     @Select("SELECT * FROM customer WHERE cus_id = #{cusId}")
-    Optional<Customer> findById(long cusId);
+    Customer findById(long cusId);
 
     @Insert("INSERT INTO customer (name, mobile, address) VALUES(#{name}, #{mobile}, #{address})")
     @Options(useGeneratedKeys = true, keyProperty = "cusId")

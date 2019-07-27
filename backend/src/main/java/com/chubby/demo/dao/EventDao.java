@@ -11,6 +11,11 @@ import java.util.List;
 public interface EventDao {
 
     @Select("SELECT * FROM event")
+    @Results(value = {
+            @Result(property = "emp", column = "emp_id",
+                    one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById")),
+            @Result(property = "cus", column = "cus_id",
+                    one = @One(select = "com.chubby.demo.dao.CustomerDao.findById"))})
     List<Event> findAll();
 
     @Select("SELECT * FROM event WHERE emp_id = #{empId}")

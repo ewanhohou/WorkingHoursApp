@@ -12,7 +12,6 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = "http://192.168.1.10:8080")
 @RequestMapping("/api/employees")
 public class EmployeeController {
     @Autowired

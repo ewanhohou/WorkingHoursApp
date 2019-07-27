@@ -1,16 +1,15 @@
-package com.chubby.demo.domain;
+package com.chubby.demo.dto;
 
+import com.chubby.demo.domain.Employee;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class Wage {
-
+public class WageDTO {
     private Long wageSeq;
-    private Long empId;
+    private Employee emp;
     private Date startTime;
     private Date endTime;
     private Double wage;
-
 }

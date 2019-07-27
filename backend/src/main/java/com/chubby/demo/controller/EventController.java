@@ -1,6 +1,7 @@
 package com.chubby.demo.controller;
 
 import com.chubby.demo.domain.Event;
+import com.chubby.demo.dto.EventDTO;
 import com.chubby.demo.exception.NotFoundException;
 import com.chubby.demo.service.impl.EventServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class EventController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Event> findEvents() {
+    public List<EventDTO> findEvents() {
         return eventService.findAll();
     }
 
@@ -33,7 +34,7 @@ public class EventController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Event> findEmpById(@PathVariable Long id) {
+    public List<EventDTO> findEmpById(@PathVariable Long id) {
         return eventService.findByEmpId(id)
                 .orElseThrow(() -> new NotFoundException("Employee", id));
     }

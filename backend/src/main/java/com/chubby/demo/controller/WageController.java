@@ -1,6 +1,7 @@
 package com.chubby.demo.controller;
 
 import com.chubby.demo.domain.Wage;
+import com.chubby.demo.dto.WageDTO;
 import com.chubby.demo.exception.NotFoundException;
 import com.chubby.demo.service.impl.WageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class WageController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Wage> findWages() {
+    public List<WageDTO> findWages() {
         return wageService.findAll();
     }
 
@@ -33,7 +34,7 @@ public class WageController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Wage> findEmpById(@PathVariable Long id) {
+    public List<WageDTO> findEmpById(@PathVariable Long id) {
         return wageService.findByEmpId(id)
                 .orElseThrow(() -> new NotFoundException("Employee", id));
     }

@@ -8,11 +8,8 @@ import java.util.Date;
 public class Event {
 
     private Long eventSeq;
-    //private Long empId;
-    //private Long cusId;
-    private Employee emp;
-    private Customer cus;
-
+    private Long empId;
+    private Long cusId;
     private Date startTime;
     private Date endTime;
 

@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findById(long empId) {
-        return employeeDao.findById(empId);
+        return Optional.of(employeeDao.findById(empId));
     }
 
     @Override

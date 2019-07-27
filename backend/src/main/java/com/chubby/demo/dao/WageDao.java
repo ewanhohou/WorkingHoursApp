@@ -11,6 +11,9 @@ import java.util.List;
 public interface WageDao {
 
     @Select("SELECT * FROM wage")
+    @Results(value = {
+            @Result(property = "emp", column = "emp_id",
+                    one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
     List<Wage> findAll();
 
     @Select("SELECT * FROM wage WHERE emp_id = #{empId}")

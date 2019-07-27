@@ -8,7 +8,8 @@ import java.util.Date;
 public class Wage {
 
     private Long wageSeq;
-    private Long empId;
+    //private Long empId;
+    private Employee emp;
     private Date startTime;
     private Date endTime;
     private Double wage;

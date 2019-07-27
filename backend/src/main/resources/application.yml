@@ -1,0 +1,19 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: WorkingHoursApp
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1
+    sql-script-encoding: UTF-8
+  h2:
+    console.enabled: true
+    console.path: /h2
+logging:
+  level:
+    com.chubby.demo: debug
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

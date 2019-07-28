@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt" url="/customer_add" title="客戶"></mainTemplate>
+<mainTemplate :tableData="dt"  url="/event_add" title="工時"></mainTemplate>
 </template>
 
 <script>
@@ -10,12 +10,13 @@ import {
 let vm;
 
 export default {
-    name: 'customer',
+    name: 'event',
     data() {
         const title = [
-            "姓名",
-            "電話​",
-            "地址​",
+            "empId",
+            "cusId",
+            "startTime",
+            "endTime",
         ];
         return {
             dt: {
@@ -26,7 +27,7 @@ export default {
     },
     mounted() {
         vm = this;
-        api('customers').then(res => {
+        api('events').then(res => {
             vm.dt.rows  = res.data.map(m=>Object.assign(m));
         });
     },

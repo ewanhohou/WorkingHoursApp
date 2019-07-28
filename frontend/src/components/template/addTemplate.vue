@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    name: 'add',
+    name: 'addTemplate',
     props: {
         title: String,
     }

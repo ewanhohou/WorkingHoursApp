@@ -1,6 +1,6 @@
 <template>
 <inputTemplate :label="label">
-    <input type="url" class="form-control" :id="id" :placeholder="id" autofocus required>
+    <input type="number" class="form-control" :id="id" :placeholder="id" required @change="$emit('input', $event.target.value)">
 </inputTemplate>
 </template>
 
@@ -8,7 +8,7 @@
 import inputTemplate from '@/components/template/inputTemplate'
 
 export default {
-    name: 'input_tel',
+    name: 'inputNumberValid',
     props: {
         id: String,
         label: String,

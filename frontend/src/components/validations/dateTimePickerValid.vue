@@ -1,6 +1,6 @@
 <template>
 <inputTemplate :label="label">
-    <Datetime type="datetime" v-model="dt" format="dd-MM-yyyy HH:mm" :minute-step="5" use12-hour input-class="form-control"></Datetime>
+    <Datetime v-model="dt" type="datetime" format="dd-MM-yyyy HH:mm" :minute-step="5" use12-hour input-class="form-control"></Datetime>
 </inputTemplate>
 </template>
 
@@ -11,7 +11,7 @@ import {
 import inputTemplate from '@/components/template/inputTemplate'
 import "vue-datetime/dist/vue-datetime.css";
 export default {
-    name: 'dateTimePicker',
+    name: 'dateTimePickerValidValid',
     props: {
         label: String
     },
@@ -23,6 +23,11 @@ export default {
     components: {
         inputTemplate,
         Datetime
+    },
+    watch: {
+        dt($event) {
+            this.$emit('dateTimeChangEvent', $event);
+        }
     }
 }
 </script>

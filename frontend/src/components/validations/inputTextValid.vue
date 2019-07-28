@@ -1,6 +1,6 @@
 <template>
 <inputTemplate :label="label">
-    <input type="text" class="form-control" :id="id" :placeholder="id" autofocus required>
+    <input type="text" class="form-control" :id="id" :placeholder="id" autofocus required @change="$emit('input', $event.target.value)">
 </inputTemplate>
 </template>
 
@@ -8,13 +8,13 @@
 import inputTemplate from '@/components/template/inputTemplate'
 
 export default {
-    name: 'input_text',
+    name: 'inputTextValid',
     props: {
         id: String,
         label: String,
     },
     components: {
         inputTemplate,
-    }
+    },
 }
 </script>

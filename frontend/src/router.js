@@ -25,13 +25,13 @@ export default new Router({
         name: 'employee_add',
         component: () => import('@/views/employee/create'),
       },{
-        path: '/wage',
-        name: 'wage',
-        component: () => import('@/views/wage/index'),
+        path: '/event',
+        name: 'event',
+        component: () => import('@/views/event/index'),
       },,{
-        path: '/wage_add',
-        name: 'wage_add',
-        component: () => import('@/views/wage/create'),
+        path: '/event_add',
+        name: 'event_add',
+        component: () => import('@/views/event/create'),
       }]
     }
   ]

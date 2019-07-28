@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <tableTemplate></tableTemplate>
+                        <tableTemplate :tableData="tableData"></tableTemplate>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 <script>
 import tableTemplate from "@/components/template/tableTemplate";
 export default {
-    name: 'main_content',
+    name: 'mainTemplate',
     props: {
         tableData: Object,
         title: String,

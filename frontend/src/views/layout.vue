@@ -36,7 +36,7 @@
                     <router-link to="/employee"><span>雇員管理</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/wage"><span>工時管理</span></router-link>
+                    <router-link to="/event"><span>工時管理</span></router-link>
                 </li>
             </ul>
         </section>

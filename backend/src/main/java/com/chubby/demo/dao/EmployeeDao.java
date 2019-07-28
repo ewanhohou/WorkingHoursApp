@@ -1,6 +1,6 @@
 package com.chubby.demo.dao;
 
-import com.chubby.demo.domain.Employee;
+import com.chubby.demo.entity.Employee;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 

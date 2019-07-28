@@ -1,7 +1,7 @@
 package com.chubby.demo.dao;
 
-import com.chubby.demo.domain.Event;
 import com.chubby.demo.dto.EventDTO;
+import com.chubby.demo.entity.Event;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 

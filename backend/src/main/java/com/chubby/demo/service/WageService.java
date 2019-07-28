@@ -1,7 +1,7 @@
 package com.chubby.demo.service;
 
-import com.chubby.demo.domain.Wage;
 import com.chubby.demo.dto.WageDTO;
+import com.chubby.demo.entity.Wage;
 
 import java.util.List;
 import java.util.Optional;

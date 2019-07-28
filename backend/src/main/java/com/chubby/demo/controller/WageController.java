@@ -1,7 +1,7 @@
 package com.chubby.demo.controller;
 
-import com.chubby.demo.domain.Wage;
 import com.chubby.demo.dto.WageDTO;
+import com.chubby.demo.entity.Wage;
 import com.chubby.demo.exception.NotFoundException;
 import com.chubby.demo.service.impl.WageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class WageController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Wage newWage(@RequestBody Wage newWage) {
+    public Wage newWage(@Valid @RequestBody Wage newWage) {
         wageService.insert(newWage);
         log.debug("new wageSeq {}", newWage.getWageSeq());
         return newWage;

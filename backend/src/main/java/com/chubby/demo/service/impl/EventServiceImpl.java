@@ -1,8 +1,8 @@
 package com.chubby.demo.service.impl;
 
 import com.chubby.demo.dao.EventDao;
-import com.chubby.demo.domain.Event;
 import com.chubby.demo.dto.EventDTO;
+import com.chubby.demo.entity.Event;
 import com.chubby.demo.service.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Optional<List<EventDTO>> findByEmpId(long empId) {
-        return Optional.of(eventDao.findByEmpId(empId));
+        return Optional.ofNullable(eventDao.findByEmpId(empId));
     }
 
     @Override

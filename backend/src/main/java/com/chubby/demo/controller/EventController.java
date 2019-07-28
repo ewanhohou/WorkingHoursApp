@@ -1,7 +1,7 @@
 package com.chubby.demo.controller;
 
-import com.chubby.demo.domain.Event;
 import com.chubby.demo.dto.EventDTO;
+import com.chubby.demo.entity.Event;
 import com.chubby.demo.exception.NotFoundException;
 import com.chubby.demo.service.impl.EventServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +27,7 @@ public class EventController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Event newEvent(@RequestBody Event newEvent) {
+    public Event newEvent(@Valid @RequestBody Event newEvent) {
         eventService.insert(newEvent);
         log.debug("new eventSeq {}", newEvent.getEventSeq());
         return newEvent;

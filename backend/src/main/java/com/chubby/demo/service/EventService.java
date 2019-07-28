@@ -1,7 +1,7 @@
 package com.chubby.demo.service;
 
-import com.chubby.demo.domain.Event;
 import com.chubby.demo.dto.EventDTO;
+import com.chubby.demo.entity.Event;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package com.chubby.demo.dto;
 
-import com.chubby.demo.domain.Customer;
-import com.chubby.demo.domain.Employee;
+import com.chubby.demo.entity.Customer;
+import com.chubby.demo.entity.Employee;
 import lombok.Data;
 
 import java.util.Date;

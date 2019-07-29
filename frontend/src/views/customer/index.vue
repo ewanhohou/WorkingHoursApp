@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt" url="/customer_add" title="客戶"></mainTemplate>
+<mainTemplate :tableData="dt" url="/customer_add" title="客戶" @deleteMethid="deleteMethid"></mainTemplate>
 </template>
 
 <script>
@@ -7,31 +7,41 @@ import mainTemplate from "@/components/template/mainTemplate";
 import {
     api
 } from "@/resource";
-let vm;
+import {
+    list
+} from "@/mixins";
 
 export default {
-    name: 'customer',
+    name: "customer",
     data() {
-        const title = [
-            "姓名",
-            "電話​",
-            "地址​",
-        ];
+        const title = ["姓名", "電話​", "地址​"];
         return {
             dt: {
                 title: title,
-                rows: [],
-            },
+                rows: []
+            }
         };
     },
     mounted() {
-        vm = this;
-        api('customers').then(res => {
-            vm.dt.rows  = res.data.map(m=>Object.assign(m));
+        api("customers").then(res => {
+            this.dt.rows = res.data.map(m => {
+                return {
+                    id: m.cusId,
+                    name: m.name,
+                    mobile: m.mobile,
+                    address: m.address
+                };
+            });
         });
     },
     components: {
-        mainTemplate,
+        mainTemplate
     },
-}
+    mixins: [list],
+    methods: {
+        deleteMethid(row, i) {
+            this.remove('customers/', row.id, i)
+        }
+    }
+};
 </script>

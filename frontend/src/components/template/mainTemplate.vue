@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <tableTemplate :tableData="tableData"></tableTemplate>
+                        <tableTemplate :tableData="tableData" @deletaMethid="deleteMethod"></tableTemplate>
                     </div>
                 </div>
             </div>
@@ -51,6 +51,10 @@ export default {
         tableTemplate,
     },
     mounted() {},
-    methods: {}
+    methods: {
+        deleteMethod(row, i) {
+            this.$emit('deleteMethid', row, i)
+        },
+    }
 }
 </script>

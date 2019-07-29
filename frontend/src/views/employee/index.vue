@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt" url="/employee_add" title="雇員" @deleteMethid="deleteMethid"></mainTemplate>
+<mainTemplate :tableData="dt" url="/employee/modify" title="雇員" @deleteMethid="deleteMethid"></mainTemplate>
 </template>
 
 <script>

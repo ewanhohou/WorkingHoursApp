@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt"  url="/event_add" title="工時" @deleteMethid="deleteMethid"></mainTemplate>
+<mainTemplate :tableData="dt"  url="/event/modify" title="工時" @deleteMethid="deleteMethid"></mainTemplate>
 </template>
 
 <script>

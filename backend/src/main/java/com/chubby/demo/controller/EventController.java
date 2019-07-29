@@ -10,50 +10,68 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/events")
-public class EventController {
+public class EventController extends AbstractBaseController {
+
     @Autowired
     private EventServiceImpl eventService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<EventDTO> findEvents() {
-        return eventService.findAll();
+        return this.eventService.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Event newEvent(@Valid @RequestBody Event newEvent) {
-        eventService.insert(newEvent);
+        findEmpByEmpId(newEvent.getEmpId());
+        findCusByCusId(newEvent.getCusId());
+        this.eventService.insert(newEvent);
         log.debug("new eventSeq {}", newEvent.getEventSeq());
         return newEvent;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/emp/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<EventDTO> findEmpById(@PathVariable Long id) {
-        return eventService.findByEmpId(id)
+    public List<EventDTO> findByEmpId(@PathVariable @Min(1) Long id) {
+        findEmpByEmpId(id);
+        return this.eventService.findByEmpId(id)
                 .orElseThrow(() -> new NotFoundException("Employee", id));
+    }
+
+    @GetMapping("/{seq}")
+    @ResponseStatus(HttpStatus.OK)
+    public EventDTO findBySeq(@PathVariable @Min(1) Long seq) {
+        return findEveByEventSeq(seq);
     }
 
     @PutMapping("/{seq}")
     @ResponseStatus(HttpStatus.OK)
-    public Event updateEvent(@PathVariable("seq") Long seq, @RequestBody Event event) {
+    public Event updateEvent(@PathVariable @Min(1) Long seq, @RequestBody Event event) {
+        this.findEveByEventSeq(seq);
+        findEmpByEmpId(event.getEmpId());
+        findCusByCusId(event.getCusId());
         event.setEventSeq(seq);
-        eventService.update(event);
+        this.eventService.update(event);
         return event;
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{seq}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEvent(@PathVariable Long id) {
-        eventService.delete(id);
+    public void deleteEvent(@PathVariable @Min(1) Long seq) {
+        this.findEveByEventSeq(seq);
+        this.eventService.delete(seq);
     }
 
-
+    private EventDTO findEveByEventSeq(Long seq) {
+        return this.eventService.findBySeq(seq)
+                .orElseThrow(() -> new NotFoundException("Event", seq));
+    }
 }

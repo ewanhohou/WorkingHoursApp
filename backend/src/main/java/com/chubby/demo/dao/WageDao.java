@@ -23,6 +23,12 @@ public interface WageDao {
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
     List<WageDTO> findByEmpId(long empId);
 
+    @Select("SELECT * FROM wage WHERE wage_seq = #{wageSeq}")
+    @Results(value = {
+            @Result(property = "emp", column = "emp_id",
+                    one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
+    WageDTO findBySeq(long wageSeq);
+
     @Insert("INSERT INTO wage (emp_Id, start_time, end_time, wage) VALUES(#{empId}, #{startTime}, #{endTime}, #{wage})")
     @Options(useGeneratedKeys = true, keyProperty = "wageSeq")
     long insert(Wage wage);

@@ -12,6 +12,8 @@ public interface WageService {
 
     Optional<List<WageDTO>> findByEmpId(long empId);
 
+    Optional<WageDTO> findBySeq(long wageSeq);
+
     long insert(Wage wage);
 
     void update(Wage wage);

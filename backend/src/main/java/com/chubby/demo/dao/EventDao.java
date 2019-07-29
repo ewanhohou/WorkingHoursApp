@@ -27,6 +27,14 @@ public interface EventDao {
                     one = @One(select = "com.chubby.demo.dao.CustomerDao.findById"))})
     List<EventDTO> findByEmpId(long empId);
 
+    @Select("SELECT * FROM event WHERE event_seq = #{eventSeq}")
+    @Results(value = {
+            @Result(property = "emp", column = "emp_id",
+                    one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById")),
+            @Result(property = "cus", column = "cus_id",
+                    one = @One(select = "com.chubby.demo.dao.CustomerDao.findById"))})
+    EventDTO findBySeq(long eventSeq);
+
     @Insert("INSERT INTO event (emp_Id, cus_Id, start_time, end_time) VALUES(#{empId}, #{cusId}, #{startTime}, #{endTime})")
     @Options(useGeneratedKeys = true, keyProperty = "eventSeq")
     long insert(Event event);

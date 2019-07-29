@@ -18,7 +18,7 @@ CREATE TABLE customer
     cus_id  INT PRIMARY KEY auto_increment,
     name    VARCHAR,
     mobile  VARCHAR,
-    address VARCHAR,
+    address VARCHAR
 );
 
 CREATE TABLE event
@@ -28,6 +28,8 @@ CREATE TABLE event
     cus_id     INT,
     start_time DATETIME,
     end_time   DATETIME,
+    CONSTRAINT employee_event_emp_id_fk_id FOREIGN KEY (emp_id) REFERENCES employee (emp_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT customer_event_cus_id_fk_id FOREIGN KEY (cus_id) REFERENCES customer (cus_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE wage
@@ -36,5 +38,6 @@ CREATE TABLE wage
     emp_id     INT,
     start_time DATETIME,
     end_time   DATETIME,
-    wage       INT
+    wage       INT,
+    CONSTRAINT employee_wage_emp_id_fk_id FOREIGN KEY (emp_id) REFERENCES employee (emp_id) ON DELETE CASCADE ON UPDATE CASCADE
 );

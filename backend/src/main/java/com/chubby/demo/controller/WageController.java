@@ -10,50 +10,67 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/wages")
-public class WageController {
+public class WageController extends AbstractBaseController {
+
     @Autowired
     private WageServiceImpl wageService;
+
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<WageDTO> findWages() {
-        return wageService.findAll();
+        return this.wageService.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Wage newWage(@Valid @RequestBody Wage newWage) {
-        wageService.insert(newWage);
+        findEmpByEmpId(newWage.getEmpId());
+        this.wageService.insert(newWage);
         log.debug("new wageSeq {}", newWage.getWageSeq());
         return newWage;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/emp/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<WageDTO> findEmpById(@PathVariable Long id) {
-        return wageService.findByEmpId(id)
+    public List<WageDTO> findByEmpId(@PathVariable @Min(1) Long id) {
+        findEmpByEmpId(id);
+        return this.wageService.findByEmpId(id)
                 .orElseThrow(() -> new NotFoundException("Employee", id));
     }
 
-    @PutMapping("/{id}")
+    @GetMapping("/{seq}")
     @ResponseStatus(HttpStatus.OK)
-    public Wage updateWage(@PathVariable("id") Long id, @RequestBody Wage wage) {
-        wage.setWageSeq(id);
-        wageService.update(wage);
+    public WageDTO findBySeq(@PathVariable @Min(1) Long seq) {
+        return findWagByWageSeq(seq);
+    }
+
+    @PutMapping("/{seq}")
+    @ResponseStatus(HttpStatus.OK)
+    public Wage updateWage(@PathVariable @Min(1) Long seq, @RequestBody Wage wage) {
+        this.findWagByWageSeq(seq);
+        findEmpByEmpId(wage.getEmpId());
+        wage.setWageSeq(seq);
+        this.wageService.update(wage);
         return wage;
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{seq}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteWage(@PathVariable Long id) {
-        wageService.delete(id);
+    public void deleteWage(@PathVariable @Min(1) Long seq) {
+        this.findWagByWageSeq(seq);
+        this.wageService.delete(seq);
     }
 
-
+    private WageDTO findWagByWageSeq(Long seq) {
+        return this.wageService.findBySeq(seq)
+                .orElseThrow(() -> new NotFoundException("Wage", seq));
+    }
 }

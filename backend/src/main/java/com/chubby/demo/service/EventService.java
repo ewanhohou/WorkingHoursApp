@@ -12,6 +12,8 @@ public interface EventService {
 
     Optional<List<EventDTO>> findByEmpId(long empId);
 
+    Optional<EventDTO> findBySeq(long eventSeq);
+
     long insert(Event event);
 
     void update(Event event);

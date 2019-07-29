@@ -1,22 +1,19 @@
 package com.chubby.demo.controller;
 
 import com.chubby.demo.entity.Customer;
-import com.chubby.demo.exception.NotFoundException;
-import com.chubby.demo.service.impl.CustomerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/customers")
-public class CustomerController {
-    @Autowired
-    private CustomerServiceImpl customerService;
+public class CustomerController extends AbstractBaseController {
+
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -34,14 +31,14 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer findEmpById(@PathVariable Long id) {
-        return customerService.findById(id)
-                .orElseThrow(() -> new NotFoundException("Customer", id));
+    public Customer findEmpById(@PathVariable @Min(1) Long id) {
+        return findCusByCusId(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer updateCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
+    public Customer updateCustomer(@PathVariable @Min(1) Long id, @RequestBody Customer customer) {
+        findCusByCusId(id);
         customer.setCusId(id);
         customerService.update(customer);
         return customer;
@@ -50,7 +47,8 @@ public class CustomerController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCustomer(@PathVariable Long id) {
+    public void deleteCustomer(@PathVariable @Min(1) Long id) {
+        findCusByCusId(id);
         customerService.delete(id);
     }
 

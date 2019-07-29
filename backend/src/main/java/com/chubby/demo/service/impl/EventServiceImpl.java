@@ -29,6 +29,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Optional<EventDTO> findBySeq(long eventSeq) {
+        return Optional.ofNullable(eventDao.findBySeq(eventSeq));
+    }
+
+    @Override
     public long insert(Event event) {
         return eventDao.insert(event);
     }

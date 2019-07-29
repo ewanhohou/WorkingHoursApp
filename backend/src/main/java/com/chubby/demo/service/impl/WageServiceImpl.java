@@ -27,6 +27,11 @@ public class WageServiceImpl implements WageService {
     }
 
     @Override
+    public Optional<WageDTO> findBySeq(long wageSeq) {
+        return Optional.ofNullable(wageDao.findBySeq(wageSeq));
+    }
+
+    @Override
     public long insert(Wage wage) {
         return wageDao.insert(wage);
     }

@@ -1,6 +1,6 @@
 package com.chubby.demo.controller;
 
-import com.chubby.demo.domain.Customer;
+import com.chubby.demo.entity.Customer;
 import com.chubby.demo.exception.NotFoundException;
 import com.chubby.demo.service.impl.CustomerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -25,7 +26,7 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer newCustomer(@RequestBody Customer newCustomer) {
+    public Customer newCustomer(@Valid @RequestBody Customer newCustomer) {
         customerService.insert(newCustomer);
         log.debug("new cusId {}", newCustomer.getCusId());
         return newCustomer;

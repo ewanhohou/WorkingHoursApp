@@ -1,7 +1,7 @@
 package com.chubby.demo.service.impl;
 
 import com.chubby.demo.dao.EmployeeDao;
-import com.chubby.demo.domain.Employee;
+import com.chubby.demo.entity.Employee;
 import com.chubby.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findById(long empId) {
-        return Optional.of(employeeDao.findById(empId));
+        return Optional.ofNullable(employeeDao.findById(empId));
     }
 
     @Override

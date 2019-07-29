@@ -1,6 +1,6 @@
 package com.chubby.demo.service;
 
-import com.chubby.demo.domain.Employee;
+import com.chubby.demo.entity.Employee;
 
 import java.util.List;
 import java.util.Optional;

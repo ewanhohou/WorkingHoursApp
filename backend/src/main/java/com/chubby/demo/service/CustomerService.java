@@ -1,6 +1,6 @@
 package com.chubby.demo.service;
 
-import com.chubby.demo.domain.Customer;
+import com.chubby.demo.entity.Customer;
 
 import java.util.List;
 import java.util.Optional;

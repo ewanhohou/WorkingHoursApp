@@ -1,8 +1,8 @@
 package com.chubby.demo.service.impl;
 
 import com.chubby.demo.dao.WageDao;
-import com.chubby.demo.domain.Wage;
 import com.chubby.demo.dto.WageDTO;
+import com.chubby.demo.entity.Wage;
 import com.chubby.demo.service.WageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class WageServiceImpl implements WageService {
 
     @Override
     public Optional<List<WageDTO>> findByEmpId(long empId) {
-        return Optional.of(wageDao.findByEmpId(empId));
+        return Optional.ofNullable(wageDao.findByEmpId(empId));
     }
 
     @Override

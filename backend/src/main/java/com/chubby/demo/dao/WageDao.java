@@ -1,7 +1,7 @@
 package com.chubby.demo.dao;
 
-import com.chubby.demo.domain.Wage;
 import com.chubby.demo.dto.WageDTO;
+import com.chubby.demo.entity.Wage;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 

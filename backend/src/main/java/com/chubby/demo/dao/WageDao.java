@@ -33,7 +33,7 @@ public interface WageDao {
     @Options(useGeneratedKeys = true, keyProperty = "wageSeq")
     long insert(Wage wage);
 
-    @Update("UPDATE wage SET start_time=#{startTime}, end_time=#{endTime}, wage=#{wage} WHERE wage_seq =#{wageSeq}")
+    @Update("UPDATE wage SET emp_Id=#{empId}, start_time=#{startTime}, end_time=#{endTime}, wage=#{wage} WHERE wage_seq =#{wageSeq}")
     void update(Wage wage);
 
     @Delete("DELETE FROM wage WHERE wage_seq =#{wageSeq}")

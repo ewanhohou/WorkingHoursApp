@@ -39,7 +39,7 @@ public interface EventDao {
     @Options(useGeneratedKeys = true, keyProperty = "eventSeq")
     long insert(Event event);
 
-    @Update("UPDATE event SET start_time=#{startTime}, end_time=#{endTime} WHERE event_seq =#{eventSeq}")
+    @Update("UPDATE event SET emp_Id=#{empId}, cus_Id=#{cusId}, start_time=#{startTime}, end_time=#{endTime} WHERE event_seq =#{eventSeq}")
     void update(Event event);
 
     @Delete("DELETE FROM event WHERE event_seq =#{eventSeq}")

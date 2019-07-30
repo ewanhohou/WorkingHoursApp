@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <tableTemplate :tableData="tableData" @deletaMethid="deleteMethod"></tableTemplate>
+                        <tableTemplate :tableData="tableData" @deletaMethod="deleteMethod"></tableTemplate>
                     </div>
                 </div>
             </div>

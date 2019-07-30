@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt"  url="/event/modify" title="工時" @deleteMethid="deleteMethid"></mainTemplate>
+<mainTemplate :tableData="dt" url="/events/modify" title="工時" @deleteMethid="deleteMethid"></mainTemplate>
 </template>
 
 <script>
@@ -10,6 +10,7 @@ import {
 import {
     list
 } from "@/mixins";
+import moment from 'moment'
 
 export default {
     name: 'event',
@@ -29,13 +30,13 @@ export default {
     },
     mounted() {
         api('events').then(res => {
-            this.dt.rows  = res.data.map(m => {
+            this.dt.rows = res.data.map(m => {
                 return {
                     id: m.eventSeq,
                     cusName: m.cus.name,
                     empName: m.emp.name,
-                    addstartTimeress: m.startTime,
-                    endTime: m.endTime
+                    addstartTimeress: moment(String(m.startTime)).format('DD-MM-YYYY HH:mm'),
+                    endTime: moment(String(m.endTime)).format('DD-MM-YYYY HH:mm')
                 };
             });
         });
@@ -43,7 +44,7 @@ export default {
     components: {
         mainTemplate,
     },
-     mixins: [list],
+    mixins: [list],
     methods: {
         deleteMethid(row, i) {
             this.remove('events/', row.id, i)

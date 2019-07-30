@@ -5,21 +5,22 @@
         <inputTel label="電話" id="Mobile" v-model="form.mobile"></inputTel>
         <inputText label="地址" id="Address" v-model="form.address"></inputText>
         <inputNumber label="薪資" id="price" v-model="form.hourWage"></inputNumber>
-        <button type="submit" id="submit" class="btn btn-default pull-right" @click="create()">送出</button>
+        <button type="submit" id="submit" class="btn btn-default pull-right" @click.stop.prevent="submit()">送出</button>
     </div>
 </addTemplate>
 </template>
 
 <script>
-import {
-    api
-} from "@/resource";
 import addTemplate from "@/components/template/addTemplate";
 import inputText from "@/components/validations/inputTextValid";
 import inputTel from "@/components/validations/inputTelValid";
 import inputNumber from "@/components/validations/inputNumberValid";
+import {
+    modify
+} from "@/mixins";
+
 export default {
-    name: 'create',
+    name: 'modify',
     data() {
         return {
             form: {
@@ -36,17 +37,23 @@ export default {
         inputTel,
         inputNumber
     },
+    mixins: [modify],
+    mounted() {
+        if (this.$route.params.id) this.get();
+    },
     methods: {
+        submit() {
+            if (!this.$route.params.id) this.create();
+            else this.modify();
+        },
         create() {
-            api.post('employees', this.form, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => {
-                if (res.status == 201) this.$router.push({
-                    path: '/employee'
-                })
-            })
+            this.post("employees");
+        },
+        modify() {
+            this.put("employees", this.$route.params.id);
+        },
+        get() {
+            this.getOne("employees", this.$route.params.id);
         }
     },
 }

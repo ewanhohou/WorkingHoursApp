@@ -4,23 +4,23 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 let pages = {
-  "/customer": () =>
+  "/customers": () =>
     import("@/views/customer/index"),
-  "/customer/modify/:id": () =>
+  "/customers/modify/:id": () =>
     import("@/views/customer/modify"),
-  "/customer/modify": () =>
+  "/customers/modify": () =>
     import("@/views/customer/modify"),
-  "/employee": () =>
+  "/employees": () =>
     import("@/views/employee/index"),
-  "/employee/modify": () =>
+  "/employees/modify": () =>
     import("@/views/employee/modify"),
-  "/employee/modify/:id": () =>
+  "/employees/modify/:id": () =>
     import("@/views/employee/modify"),
-  "/event": () =>
+  "/events": () =>
     import("@/views/event/index"),
-  "/event/modify": () =>
+  "/events/modify": () =>
     import("@/views/event/modify"),
-  "/event/modify/:id": () =>
+  "/events/modify/:id": () =>
     import("@/views/event/modify"),
 };
 

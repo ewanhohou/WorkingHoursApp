@@ -1,6 +1,6 @@
 <template>
 <inputTemplate :label="label">
-    <input type="number" class="form-control" :id="id" :placeholder="id" required @change="$emit('input', $event.target.value)">
+    <input :value="value" type="number" class="form-control" :id="id" :placeholder="id" required @change="$emit('input', parseInt($event.target.value))">
 </inputTemplate>
 </template>
 
@@ -12,9 +12,10 @@ export default {
     props: {
         id: String,
         label: String,
+        value: Number
     },
     components: {
         inputTemplate,
-    }
+    },
 }
 </script>

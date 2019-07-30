@@ -11,9 +11,9 @@
             <tr v-for="(row, i) in tableData.rows" v-bind:key="i">
                 <td v-for="(item, j) in row" v-if="j != 'id'" v-bind:key="j">{{item}}</td>
                 <td class="action">
-                    <a title="修改" class="btn" @click.stop.prevent="modifyMethod(row)">
+                    <router-link :to="{name:`${$route.path}/modify/:id`, params:{id:row.id}}" class="btn">
                         <i class="fa fa-pencil"></i>
-                    </a>
+                    </router-link>
                     <a title="刪除" class="btn" @click.stop.prevent="deleteMethod(row, i)">
                         <i class="fa fa-times text-red"></i>
                     </a>
@@ -49,12 +49,9 @@ export default {
         }
     },
     methods: {
-        modifyMethod(item) {
-            console.log(item);
-        },
         deleteMethod(row, i) {
             if (!confirm("確定要刪除嗎？")) return;
-            this.$emit('deletaMethid', row, i)
+            this.$emit('deletaMethod', row, i)
         },
     }
 }

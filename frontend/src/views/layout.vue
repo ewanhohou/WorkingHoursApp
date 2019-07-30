@@ -30,13 +30,13 @@
         <section class="sidebar">
             <ul class="sidebar-menu" data-widget="tree">
                 <li>
-                    <router-link to="/customer"><span>客戶管理</span></router-link>
+                    <router-link to="/customers"><span>客戶管理</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/employee"><span>雇員管理</span></router-link>
+                    <router-link to="/employees"><span>雇員管理</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/event"><span>工時管理</span></router-link>
+                    <router-link to="/events"><span>工時管理</span></router-link>
                 </li>
             </ul>
         </section>

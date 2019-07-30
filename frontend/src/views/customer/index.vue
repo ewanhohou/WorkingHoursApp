@@ -32,7 +32,7 @@ export default {
                     address: m.address
                 };
             });
-        });
+        }).catch(this.$handleError);
     },
     components: {
         mainTemplate

@@ -62,7 +62,7 @@ export default {
                     };
                 });
                 if (this.form.empId == null) this.form.empId = this.employees[0].slug;
-            }))
+            })).catch(this.$handleError);
     },
     methods: {
         getCustomersRequest() {
@@ -96,7 +96,7 @@ export default {
                         startTime: res.data.startTime,
                         endTime: res.data.endTime,
                     }
-                });
+                }).catch(this.$handleError);
         },
     },
 }

@@ -38,7 +38,7 @@ export default {
                     hourWage: m.hourWage
                 };
             });
-        });
+        }).catch(this.$handleError);
     },
     components: {
         mainTemplate,

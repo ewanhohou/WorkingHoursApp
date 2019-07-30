@@ -39,7 +39,7 @@ export default {
                     endTime: moment(String(m.endTime)).format('DD-MM-YYYY HH:mm')
                 };
             });
-        });
+        }).catch(this.$handleError);
     },
     components: {
         mainTemplate,

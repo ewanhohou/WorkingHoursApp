@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import addTemplate from "@/components/template/addTemplate";
-import inputText from "@/components/validations/inputTextValid";
-import inputTel from "@/components/validations/inputTelValid";
-import inputNumber from "@/components/validations/inputNumberValid";
+import addTemplate from '@/components/template/addTemplate';
+import inputText from '@/components/validations/inputTextValid';
+import inputTel from '@/components/validations/inputTelValid';
+import inputNumber from '@/components/validations/inputNumberValid';
 import {
     modify
-} from "@/mixins";
+} from '@/mixins';
 
 export default {
     name: 'modify',
@@ -47,13 +47,13 @@ export default {
             else this.modify();
         },
         create() {
-            this.post("employees");
+            this.post('employees');
         },
         modify() {
-            this.put("employees", this.$route.params.id);
+            this.put('employees', this.$route.params.id);
         },
         get() {
-            this.getOne("employees", this.$route.params.id);
+            this.getOne('employees', this.$route.params.id);
         }
     },
 }

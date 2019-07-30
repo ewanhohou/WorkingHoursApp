@@ -3,18 +3,18 @@
 </template>
 
 <script>
-import mainTemplate from "@/components/template/mainTemplate";
+import mainTemplate from '@/components/template/mainTemplate';
 import {
     api
-} from "@/resource";
+} from '@/resource';
 import {
     list
-} from "@/mixins";
+} from '@/mixins';
 
 export default {
-    name: "customer",
+    name: 'customer',
     data() {
-        const title = ["姓名", "電話​", "地址​"];
+        const title = ['姓名', '電話​', '地址​'];
         return {
             dt: {
                 title: title,
@@ -23,7 +23,7 @@ export default {
         };
     },
     mounted() {
-        api("customers").then(res => {
+        api('customers').then(res => {
             this.dt.rows = res.data.map(m => {
                 return {
                     id: m.cusId,

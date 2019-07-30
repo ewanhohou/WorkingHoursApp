@@ -3,23 +3,23 @@
 </template>
 
 <script>
-import mainTemplate from "@/components/template/mainTemplate";
+import mainTemplate from '@/components/template/mainTemplate';
 import {
     api
-} from "@/resource";
+} from '@/resource';
 import {
     list
-} from "@/mixins";
+} from '@/mixins';
 import moment from 'moment'
 
 export default {
     name: 'event',
     data() {
         const title = [
-            "客戶",
-            "雇員",
-            "開始日期",
-            "結束日期",
+            '客戶',
+            '雇員',
+            '開始日期',
+            '結束日期',
         ];
         return {
             dt: {

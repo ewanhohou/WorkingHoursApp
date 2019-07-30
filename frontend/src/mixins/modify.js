@@ -1,10 +1,7 @@
 import {
     api
-} from "@/resource";
+} from '@/resource';
 export default {
-    data() {
-        return {};
-    },
     methods: {
         getOne(url, id) {
             api(`${url}/${id}`).then(res => {
@@ -32,6 +29,6 @@ export default {
                     path: `/${url}`
                 })
             });
-        }
+        },
     }
 }

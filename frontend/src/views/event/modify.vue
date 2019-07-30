@@ -13,10 +13,10 @@
 <script>
 import {
     api
-} from "@/resource";
-import addTemplate from "@/components/template/addTemplate";
-import selectValid from "@/components/validations/selectValid";
-import dateTimePicker from "@/components/validations/dateTimePickerValid";
+} from '@/resource';
+import addTemplate from '@/components/template/addTemplate';
+import selectValid from '@/components/validations/selectValid';
+import dateTimePicker from '@/components/validations/dateTimePickerValid';
 import {
     modify
 } from "@/mixins";
@@ -82,10 +82,10 @@ export default {
             else this.modify();
         },
         create() {
-            this.post("events");
+            this.post('events');
         },
         modify() {
-            this.put("events", this.$route.params.id);
+            this.put('events', this.$route.params.id);
         },
         get() {
             if (this.$route.params.id)

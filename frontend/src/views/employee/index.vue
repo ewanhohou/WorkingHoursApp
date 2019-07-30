@@ -1,24 +1,24 @@
 <template>
-<mainTemplate :tableData="dt" url="/employees/modify" title="雇員" @deleteMethid="deleteMethid"></mainTemplate>
+<mainTemplate :tableData="dt" url="employees/modify" title="雇員" @deleteMethid="deleteMethid"></mainTemplate>
 </template>
 
 <script>
-import mainTemplate from "@/components/template/mainTemplate";
+import mainTemplate from '@/components/template/mainTemplate';
 import {
     api
-} from "@/resource";
+} from '@/resource';
 import {
     list
-} from "@/mixins";
+} from '@/mixins';
 
 export default {
     name: 'employee',
     data() {
         const title = [
-            "姓名",
-            "電話​",
-            "地址​",
-            "時薪"
+            '姓名',
+            '電話​',
+            '地址​',
+            '時薪'
         ];
         return {
             dt: {

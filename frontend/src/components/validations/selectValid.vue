@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import inputTemplate from "@/components/template/inputTemplate";
+import inputTemplate from '@/components/template/inputTemplate';
 
 export default {
-    name: "selectValid",
+    name: 'selectValid',
     props: {
         label: String,
         options: Array,

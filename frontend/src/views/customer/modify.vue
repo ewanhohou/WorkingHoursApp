@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import addTemplate from "@/components/template/addTemplate";
-import inputText from "@/components/validations/inputTextValid";
-import inputTel from "@/components/validations/inputTelValid";
+import addTemplate from '@/components/template/addTemplate';
+import inputText from '@/components/validations/inputTextValid';
+import inputTel from '@/components/validations/inputTelValid';
 import {
     modify
-} from "@/mixins";
+} from '@/mixins';
 
 export default {
-    name: "modify",
+    name: 'modify',
     data() {
         return {
             form: {
-                name: "",
-                mobile: "",
-                address: ""
+                name: '',
+                mobile: '',
+                address: ''
             }
         };
     },
@@ -43,13 +43,13 @@ export default {
             else this.modify();
         },
         create() {
-            this.post("customers");
+            this.post('customers');
         },
         modify() {
-            this.put("customers", this.$route.params.id);
+            this.put('customers', this.$route.params.id);
         },
         get() {
-            this.getOne("customers", this.$route.params.id);
+            this.getOne('customers', this.$route.params.id);
         }
     }
 };
@@ -60,4 +60,3 @@ export default {
     margin-bottom: 15px;
 }
 </style>
-        <inputText label="姓名" id="Name"></inputText>

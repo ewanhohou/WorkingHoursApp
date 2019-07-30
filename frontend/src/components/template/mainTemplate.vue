@@ -17,7 +17,6 @@
                     <div class="box-header with-border">
                         <div>
                             <router-link :to="url"><button type="button" class="btn bg-maroon">新增</button></router-link>
-                            
                         </div>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -44,13 +43,9 @@ export default {
         title: String,
         url: String
     },
-    data() {
-        return {};
-    },
     components: {
         tableTemplate,
     },
-    mounted() {},
     methods: {
         deleteMethod(row, i) {
             this.$emit('deleteMethid', row, i)

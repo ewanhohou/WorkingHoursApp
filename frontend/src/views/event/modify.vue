@@ -1,20 +1,47 @@
 <template>
-<addTemplate title="工時">
-    <div class="form-horizontal">
-        <selectValid label="客戶" :options="customers" v-model="form.cusId"></selectValid>
-        <selectValid label="雇員" :options="employees" v-model="form.empId"></selectValid>
-        <dateTimePicker label="起始日期" @dateTimeChangEvent="setStartTime" v-model="form.startTime"></dateTimePicker>
-        <dateTimePicker label="結束日期" @dateTimeChangEvent="setEndTime" v-model="form.endTime"></dateTimePicker>
-        <button type="submit" id="submit" class="btn btn-default pull-right" @click.stop.prevent="submit()">送出</button>
-    </div>
-</addTemplate>
+<div>
+    <modifyTemplate title="工時" :method="method">
+        <div class="form-horizontal">
+            <selectValid label="客戶" :options="customers" v-model="form.cusId"></selectValid>
+            <selectValid label="雇員" :options="employees" v-model="form.empId"></selectValid>
+            <dateTimePicker label="起始日期" @dateTimeChangEvent="setStartTime" v-model="form.startTime"></dateTimePicker>
+            <dateTimePicker label="結束日期" @dateTimeChangEvent="setEndTime" v-model="form.endTime"></dateTimePicker>
+            <button type="submit" id="submit" class="btn pull-right margin bg-maroon" @click.stop.prevent="popup">送出</button>
+        </div>
+    </modifyTemplate>
+    <modalTemplate ref="popup" title="確認" @submit="submit">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="top" style="width:50%">客戶:</th>
+                        <td class="top">{{cusName ? cusName.name : cusName}}</td>
+                    </tr>
+                    <tr>
+                        <th>雇員</th>
+                        <td>{{empName ? empName.name : empName}}</td>
+                    </tr>
+                    <tr>
+                        <th>起始日期</th>
+                        <td>{{form.startTime}}</td>
+                    </tr>
+                    <tr>
+                        <th>結束日期</th>
+                        <td>{{form.endTime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </modalTemplate>
+</div>
 </template>
 
 <script>
 import {
     api
 } from '@/resource';
-import addTemplate from '@/components/template/addTemplate';
+import modifyTemplate from '@/components/template/modifyTemplate';
+import modalTemplate from '@/components/template/modalTemplate';
 import selectValid from '@/components/validations/selectValid';
 import dateTimePicker from '@/components/validations/dateTimePickerValid';
 import {
@@ -25,6 +52,7 @@ export default {
     name: 'modify',
     data() {
         return {
+            method: '新增',
             customers: [],
             employees: [],
             form: {
@@ -36,7 +64,8 @@ export default {
         };
     },
     components: {
-        addTemplate,
+        modifyTemplate,
+        modalTemplate,
         selectValid,
         dateTimePicker
     },
@@ -64,7 +93,18 @@ export default {
                 if (this.form.empId == null) this.form.empId = this.employees[0].slug;
             })).catch(this.$handleError);
     },
+    computed: {
+        cusName: function () {
+            return this.customers.find(f => f.slug === this.form.cusId);
+        },
+        empName: function () {
+            return this.employees.find(f => f.slug === this.form.empId);
+        }
+    },
     methods: {
+        popup() {
+            this.$refs.popup.show();
+        },
         getCustomersRequest() {
             return api('customers')
         },
@@ -78,8 +118,8 @@ export default {
             this.form.endTime = dateTime;
         },
         submit() {
-            if (!this.$route.params.id) this.create();
-            else this.modify();
+            !this.$route.params.id ? this.create() : this.modify();
+            this.$refs.popup.hide();
         },
         create() {
             this.post('events');
@@ -88,7 +128,8 @@ export default {
             this.put('events', this.$route.params.id);
         },
         get() {
-            if (this.$route.params.id)
+            if (this.$route.params.id) {
+                this.method = "修改";
                 return api(`events/${this.$route.params.id}`).then(res => {
                     this.form = {
                         empId: res.data.emp.empId,
@@ -97,6 +138,7 @@ export default {
                         endTime: res.data.endTime,
                     }
                 }).catch(this.$handleError);
+            }
         },
     },
 }
@@ -105,5 +147,9 @@ export default {
 <style lang="scss" scoped>
 .form-group {
     margin-bottom: 15px;
+}
+
+.bg-maroon {
+    background-color: #3c8dbc !important;
 }
 </style>

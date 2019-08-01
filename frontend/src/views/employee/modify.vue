@@ -68,7 +68,7 @@ export default {
     },
     mixins: [modify],
     mounted() {
-        this.$route.params.id ? this.get() : this.method = "新增";
+        this.$route.params.id ? this.get() : this.method = '新增';
     },
     methods: {
         popup() {
@@ -85,7 +85,7 @@ export default {
             this.put('employees', this.$route.params.id);
         },
         get() {
-            this.method = "修改";
+            this.method = '修改';
             this.getOne('employees', this.$route.params.id);
         }
     },

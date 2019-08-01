@@ -27,13 +27,13 @@ export default {
     },
     methods: {
         show() {
-            $(this.$el).modal("show");
+            $(this.$el).modal('show');
         },
         hide() {
-            $(this.$el).modal("hide");
+            $(this.$el).modal('hide');
         },
         submit(e) {
-            this.$emit("submit");
+            this.$emit('submit');
         },
     }
 };

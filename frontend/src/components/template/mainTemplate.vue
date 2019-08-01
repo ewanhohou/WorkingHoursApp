@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import tableTemplate from "@/components/template/tableTemplate";
+import tableTemplate from '@/components/template/tableTemplate';
 export default {
     name: 'mainTemplate',
     props: {

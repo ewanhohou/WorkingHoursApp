@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt" url="employees/modify" title="雇員" @deleteMethid="deleteMethid"></mainTemplate>
+<mainTemplate :tableData="dt" url="employees/modify" title="雇員" @deleteMethod="deleteMethod"></mainTemplate>
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
     },
     mixins: [list],
     methods: {
-        deleteMethid(row, i) {
+        deleteMethod(row, i) {
             this.remove('employees/', row.id, i)
         }
     }

@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <tableTemplate :tableData="tableData" @deletaMethod="deleteMethod"></tableTemplate>
+                        <tableTemplate :tableData="tableData" @deleteMethod="deleteMethod"></tableTemplate>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         deleteMethod(row, i) {
-            this.$emit('deleteMethid', row, i)
+            this.$emit('deleteMethod', row, i)
         },
     }
 }

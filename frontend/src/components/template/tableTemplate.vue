@@ -51,7 +51,7 @@ export default {
     methods: {
         deleteMethod(row, i) {
             if (!confirm('確定要刪除嗎？')) return;
-            this.$emit('deletaMethod', row, i)
+            this.$emit('deleteMethod', row, i)
         },
     }
 }

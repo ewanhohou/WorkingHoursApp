@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt" url="/events/modify" title="工時" @deleteMethid="deleteMethid"></mainTemplate>
+<mainTemplate :tableData="dt" url="/events/modify" title="工時" @deleteMethod="deleteMethod"></mainTemplate>
 </template>
 
 <script>
@@ -35,7 +35,7 @@ export default {
                     id: m.eventSeq,
                     cusName: m.cus.name,
                     empName: m.emp.name,
-                    addstartTimeress: moment(String(m.startTime)).format('DD-MM-YYYY HH:mm'),
+                    startTime: moment(String(m.startTime)).format('DD-MM-YYYY HH:mm'),
                     endTime: moment(String(m.endTime)).format('DD-MM-YYYY HH:mm')
                 };
             });
@@ -46,7 +46,7 @@ export default {
     },
     mixins: [list],
     methods: {
-        deleteMethid(row, i) {
+        deleteMethod(row, i) {
             this.remove('events/', row.id, i)
         }
     }

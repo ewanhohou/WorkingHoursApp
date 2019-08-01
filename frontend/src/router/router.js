@@ -28,7 +28,12 @@ let routes = [{
   path: '/',
   component: () =>
     import('@/views/layout'),
-  children: [
+  children: [{
+      name: '/',
+      path: '/',
+      component: () =>
+        import('@/views/customer/index')
+    },
     ...Object.keys(pages).map(m => {
       return {
         name: m,

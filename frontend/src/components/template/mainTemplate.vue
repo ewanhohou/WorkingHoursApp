@@ -18,11 +18,11 @@
                         <div>
                             <router-link :to="url"><button type="button" class="btn bg-maroon">新增</button></router-link>
                         </div>
-                        <div class="box-tools pull-right">
+                        <!-- <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="box-body">
                         <tableTemplate :tableData="tableData" @deleteMethod="deleteMethod"></tableTemplate>

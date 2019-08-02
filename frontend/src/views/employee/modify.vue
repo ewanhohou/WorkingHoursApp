@@ -1,13 +1,13 @@
 <template>
 <div>
     <modifyTemplate title="雇員" :method="method">
-        <div class="form-horizontal">
-            <inputText label="姓名" id="Name" v-model="form.name"></inputText>
-            <inputTel label="電話" id="Mobile" v-model="form.mobile"></inputTel>
-            <inputText label="地址" id="Address" v-model="form.address"></inputText>
-            <inputNumber label="薪資" id="price" v-model="form.hourWage"></inputNumber>
+        <form @submit.prevent="popup" class="form-horizontal">
+            <inputText ref="name" label="姓名" id="Name" v-model="form.name"></inputText>
+            <inputTel ref="mobile" label="電話" id="Mobile" v-model="form.mobile"></inputTel>
+            <inputText ref="address" label="地址" id="Address" v-model="form.address"></inputText>
+            <inputNumber ref="price" label="薪資" id="price" v-model="form.hourWage"></inputNumber>
             <button type="submit" id="submit" class="btn pull-right margin bg-maroon" @click.stop.prevent="popup">送出</button>
-        </div>
+        </form>
     </modifyTemplate>
     <modalTemplate ref="popup" title="確認" @submit="submit">
         <div class="table-responsive">
@@ -72,7 +72,13 @@ export default {
     },
     methods: {
         popup() {
-            this.$refs.popup.show();
+            const name = this.$refs.name.require();
+            const mobile = this.$refs.mobile.require();
+            const address = this.$refs.address.require();
+            const price = this.$refs.price.require();
+            if (name && address && mobile && price) {
+                this.$refs.popup.show();
+            }
         },
         submit() {
             !this.$route.params.id ? this.create() : this.modify();

@@ -1,13 +1,12 @@
 <template>
 <div>
     <modifyTemplate title="工時" :method="method">
-        <div class="form-horizontal">
+        <form @submit.prevent="popup" class="form-horizontal">
             <selectValid label="客戶" :options="customers" v-model="form.cusId"></selectValid>
             <selectValid label="雇員" :options="employees" v-model="form.empId"></selectValid>
-            <dateTimePicker label="起始日期" @dateTimeChangEvent="setStartTime" v-model="form.startTime"></dateTimePicker>
-            <dateTimePicker label="結束日期" @dateTimeChangEvent="setEndTime" v-model="form.endTime"></dateTimePicker>
-            <button type="submit" id="submit" class="btn pull-right margin bg-maroon" @click.stop.prevent="popup">送出</button>
-        </div>
+            <dateTimePicker ref="dt" @setStartTime="setStartTime" @setEndTime="setEndTime" v-model="form.startTime" :startTimeOld="form.startTime" :endTimeOld="form.endTime"></dateTimePicker>
+            <button type="submit" id="submit" class="btn pull-right margin bg-maroon">送出</button>
+        </form>
     </modifyTemplate>
     <modalTemplate ref="popup" title="確認" @submit="submit">
         <div class="table-responsive">
@@ -23,11 +22,11 @@
                     </tr>
                     <tr>
                         <th>起始日期</th>
-                        <td>{{form.startTime}}</td>
+                        <td>{{form.startTime | dateTime}}</td>
                     </tr>
                     <tr>
                         <th>結束日期</th>
-                        <td>{{form.endTime}}</td>
+                        <td>{{form.endTime | dateTime}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,6 +43,8 @@ import modifyTemplate from '@/components/template/modifyTemplate';
 import modalTemplate from '@/components/template/modalTemplate';
 import selectValid from '@/components/validations/selectValid';
 import dateTimePicker from '@/components/validations/dateTimePickerValid';
+import moment from 'moment'
+
 import {
     modify
 } from "@/mixins";
@@ -68,6 +69,13 @@ export default {
         modalTemplate,
         selectValid,
         dateTimePicker
+    },
+    filters: {
+        dateTime: function (value) {
+            if (value) {
+                return moment(String(value)).format('DD-MM-YYYY HH:mm')
+            }
+        }
     },
     mixins: [modify],
     mounted() {
@@ -103,7 +111,7 @@ export default {
     },
     methods: {
         popup() {
-            this.$refs.popup.show();
+            if (this.$refs.dt.require()) this.$refs.popup.show();
         },
         getCustomersRequest() {
             return api('customers')

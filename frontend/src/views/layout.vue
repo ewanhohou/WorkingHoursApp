@@ -30,13 +30,13 @@
         <section class="sidebar">
             <ul class="sidebar-menu" data-widget="tree">
                 <li>
-                    <router-link to="/customers"><span>客戶管理</span></router-link>
+                    <router-link to="/customers"><i class="fa fa-circle-o"></i><span>客戶管理</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/employees"><span>雇員管理</span></router-link>
+                    <router-link to="/employees"><i class="fa fa-circle-o"></i><span>雇員管理</span></router-link>
                 </li>
                 <li>
-                    <router-link to="/events"><span>工時管理</span></router-link>
+                    <router-link to="/events"><i class="fa fa-circle-o"></i><span>工時管理</span></router-link>
                 </li>
             </ul>
         </section>
@@ -54,6 +54,12 @@ export default {
 <style lang="scss">
 .main-header {
     border-top: 6px solid #3c8dbc;
+}
+
+@media (max-width: 767px) {
+    .main-header {
+        border-top: 0;
+    }
 }
 
 .main-sidebar>.sidebar {

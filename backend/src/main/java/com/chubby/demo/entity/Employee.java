@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 
 
 @Data
@@ -17,6 +18,6 @@ public class Employee {
     @NotBlank(message = "Please provide an address")
     private String address;
     @Min(value = 0, message = "Please provide hourWage >0")
-    private double hourWage;
+    private BigDecimal hourWage;
 
 }

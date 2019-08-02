@@ -1,5 +1,5 @@
 INSERT INTO Employee (emp_id, name, mobile, address, hour_wage)
-VALUES (1, 'Ewan', '043233232', 'Sydney', 24);
+VALUES (1, 'Ewan', '043233232', 'Sydney', 20);
 INSERT INTO Employee (emp_id, name, mobile, address, hour_wage)
 VALUES (2, 'LuLu', '047778777', 'TAS', 30);
 INSERT INTO Employee (emp_id, name, mobile, address, hour_wage)
@@ -14,15 +14,21 @@ INSERT INTO customer (cus_id, name, mobile, address)
 VALUES (3, 'Andy', '049969655', 'French');
 
 INSERT INTO event (event_seq, emp_id, cus_id, start_time, end_time)
-VALUES (1, 1, 1, '2019-07-22 08:00:00', '2019-07-26 16:00:00');
+VALUES (1, 1, 1, '2019-07-22 08:00:00', '2019-07-23 15:00:00');
 INSERT INTO event (event_seq, emp_id, cus_id, start_time, end_time)
-VALUES (2, 1, 2, '2019-07-15 08:00:00', '2019-07-26 15:00:00');
+VALUES (2, 1, 2, '2019-07-26 08:00:00', '2019-07-26 15:00:00');
 INSERT INTO event (event_seq, emp_id, cus_id, start_time, end_time)
-VALUES (3, 2, 3, '2019-07-08 08:00:00', '2019-07-19 17:00:00');
+VALUES (3, 2, 3, '2019-07-18 08:00:00', '2019-07-18 14:00:00');
 INSERT INTO event (event_seq, emp_id, cus_id, start_time, end_time)
-VALUES (4, 3, 3, '2019-07-15 08:00:00', '2019-07-19 18:30:00');
+VALUES (4, 3, 3, '2019-07-15 08:00:00', '2019-07-15 16:00:00');
 
-INSERT INTO wage (wage_seq, emp_id, start_time, end_time, wage)
-VALUES (1, 1, '2019-07-22 08:00:00', '2019-07-26 16:00:00', 960);
-
-
+INSERT INTO wage (wage_seq, emp_id, start_time, end_time, wage, event_seq, work_hour)
+VALUES (1, 1, '2019-07-22 08:00:00', '2019-07-22 16:00:00', 160, 1, 8);
+INSERT INTO wage (wage_seq, emp_id, start_time, end_time, wage, event_seq, work_hour)
+VALUES (2, 1, '2019-07-23 08:00:00', '2019-07-23 15:00:00', 140, 1, 7);
+INSERT INTO wage (wage_seq, emp_id, start_time, end_time, wage, event_seq, work_hour)
+VALUES (3, 1, '2019-07-26 08:00:00', '2019-07-26 16:00:00', 140, 2, 7);
+INSERT INTO wage (wage_seq, emp_id, start_time, end_time, wage, event_seq, work_hour)
+VALUES (4, 2, '2019-07-18 08:00:00', '2019-07-18 14:00:00', 180, 3, 6);
+INSERT INTO wage (wage_seq, emp_id, start_time, end_time, wage, event_seq, work_hour)
+VALUES (5, 3, '2019-07-15 08:00:00', '2019-07-15 16:00:00', 160, 4, 8);

@@ -4,7 +4,8 @@ import router from './router/router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import requestHelper from "@/helpers/requestHelper";
+import requestHelper from '@/helpers/requestHelper';
+
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false

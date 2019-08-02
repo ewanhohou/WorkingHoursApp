@@ -14,6 +14,7 @@
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
     "vue-datetime": "^1.0.0-beta.10",
+    "vue-input-mask": "0.0.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
     "weekstart": "^1.0.0"

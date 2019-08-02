@@ -17,3 +17,9 @@ logging:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+com:
+  chubby:
+    start-work: 8
+    end-work: 16
+    max-work-hour: 8

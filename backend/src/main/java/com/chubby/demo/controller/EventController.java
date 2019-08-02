@@ -32,7 +32,7 @@ public class EventController extends AbstractBaseController {
     public Event newEvent(@Valid @RequestBody Event newEvent) {
         findEmpByEmpId(newEvent.getEmpId());
         findCusByCusId(newEvent.getCusId());
-        this.eventService.insert(newEvent);
+        this.eventService.insertEventWage(newEvent);
         log.debug("new eventSeq {}", newEvent.getEventSeq());
         return newEvent;
     }

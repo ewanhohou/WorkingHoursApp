@@ -29,11 +29,11 @@ public interface WageDao {
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
     WageDTO findBySeq(long wageSeq);
 
-    @Insert("INSERT INTO wage (emp_Id, start_time, end_time, wage) VALUES(#{empId}, #{startTime}, #{endTime}, #{wage})")
+    @Insert("INSERT INTO wage (emp_Id, start_time, end_time, wage, event_seq, work_hour) VALUES(#{empId}, #{startTime}, #{endTime}, #{wage}, #{eventSeq}, #{workHour})")
     @Options(useGeneratedKeys = true, keyProperty = "wageSeq")
     long insert(Wage wage);
 
-    @Update("UPDATE wage SET emp_Id=#{empId}, start_time=#{startTime}, end_time=#{endTime}, wage=#{wage} WHERE wage_seq =#{wageSeq}")
+    @Update("UPDATE wage SET emp_Id=#{empId}, start_time=#{startTime}, end_time=#{endTime}, wage=#{wage}, work_hour=#{workHour} WHERE wage_seq =#{wageSeq}")
     void update(Wage wage);
 
     @Delete("DELETE FROM wage WHERE wage_seq =#{wageSeq}")

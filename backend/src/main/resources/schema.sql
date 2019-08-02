@@ -10,7 +10,7 @@ CREATE TABLE employee
     name      VARCHAR,
     mobile    VARCHAR,
     address   VARCHAR,
-    hour_wage INT
+    hour_wage DECIMAL
 );
 
 CREATE TABLE customer
@@ -38,6 +38,10 @@ CREATE TABLE wage
     emp_id     INT,
     start_time DATETIME,
     end_time   DATETIME,
-    wage       INT,
-    CONSTRAINT employee_wage_emp_id_fk_id FOREIGN KEY (emp_id) REFERENCES employee (emp_id) ON DELETE CASCADE ON UPDATE CASCADE
+    wage       DECIMAL,
+    event_seq  INT,
+    work_hour  DECIMAL,
+    CONSTRAINT employee_wage_emp_id_fk_id FOREIGN KEY (emp_id) REFERENCES employee (emp_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT event_wage_seq_fk_id FOREIGN KEY (event_seq) REFERENCES event (event_seq) ON DELETE CASCADE ON UPDATE CASCADE
+
 );

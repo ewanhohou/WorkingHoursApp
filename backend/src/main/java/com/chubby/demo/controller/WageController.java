@@ -1,8 +1,10 @@
 package com.chubby.demo.controller;
 
+import com.chubby.demo.dto.EmployeeWageDTO;
 import com.chubby.demo.dto.WageDTO;
 import com.chubby.demo.entity.Wage;
 import com.chubby.demo.exception.NotFoundException;
+import com.chubby.demo.service.impl.EmployeeWageServiceImpl;
 import com.chubby.demo.service.impl.WageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class WageController extends AbstractBaseController {
 
     @Autowired
     private WageServiceImpl wageService;
+
+    @Autowired
+    private EmployeeWageServiceImpl employeeWageService;
 
 
     @GetMapping
@@ -43,6 +49,13 @@ public class WageController extends AbstractBaseController {
         findEmpByEmpId(id);
         return this.wageService.findByEmpId(id)
                 .orElseThrow(() -> new NotFoundException("Employee", id));
+    }
+
+    @GetMapping("/{year}/{month}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<EmployeeWageDTO> findByMonth(@PathVariable @Min(2000) int year, @PathVariable @Min(1) @Max(12) int month) {
+        return this.employeeWageService.findByMonth(year, month)
+                .orElseThrow(() -> new NotFoundException("employee wage"));
     }
 
     @GetMapping("/{seq}")

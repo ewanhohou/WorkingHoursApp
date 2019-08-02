@@ -19,4 +19,5 @@ public interface WageService {
     void update(Wage wage);
 
     void delete(long wageSeq);
+
 }

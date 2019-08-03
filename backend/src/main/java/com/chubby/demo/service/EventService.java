@@ -21,4 +21,6 @@ public interface EventService {
     void delete(long eventSeq);
 
     long insertEventWage(Event event);
+
+    void updateEventWage(Event event);
 }

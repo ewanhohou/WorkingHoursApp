@@ -54,11 +54,16 @@ public class EventController extends AbstractBaseController {
     @PutMapping("/{seq}")
     @ResponseStatus(HttpStatus.OK)
     public Event updateEvent(@PathVariable @Min(1) Long seq, @RequestBody Event event) {
-        this.findEveByEventSeq(seq);
+        EventDTO oldEvent = this.findEveByEventSeq(seq);
         findEmpByEmpId(event.getEmpId());
         findCusByCusId(event.getCusId());
         event.setEventSeq(seq);
-        this.eventService.update(event);
+        if (oldEvent.getEmp().getEmpId() != event.getEmpId() || !oldEvent.getStartTime().equals(event.getStartTime())
+                || !oldEvent.getEndTime().equals(event.getEndTime())) {
+            this.eventService.updateEventWage(event);
+        } else {
+            this.eventService.update(event);
+        }
         return event;
     }
 

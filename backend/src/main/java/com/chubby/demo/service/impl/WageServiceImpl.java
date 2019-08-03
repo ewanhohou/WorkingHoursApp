@@ -45,4 +45,9 @@ public class WageServiceImpl implements WageService {
     public void delete(long wageSeq) {
         wageDao.delete(wageSeq);
     }
+
+    @Override
+    public void deleteByEventSeq(long eventSeq) {
+        wageDao.deleteByEventSeq(eventSeq);
+    }
 }

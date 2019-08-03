@@ -37,6 +37,8 @@ public interface WageDao {
     void update(Wage wage);
 
     @Delete("DELETE FROM wage WHERE wage_seq =#{wageSeq}")
-    void delete(Long id);
+    void delete(long wageSeq);
 
+    @Delete("DELETE FROM wage WHERE event_seq =#{eventSeq}")
+    void deleteByEventSeq(long eventSeq);
 }

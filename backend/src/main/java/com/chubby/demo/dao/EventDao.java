@@ -43,6 +43,6 @@ public interface EventDao {
     void update(Event event);
 
     @Delete("DELETE FROM event WHERE event_seq =#{eventSeq}")
-    void delete(Long id);
+    void delete(long eventSeq);
 
 }

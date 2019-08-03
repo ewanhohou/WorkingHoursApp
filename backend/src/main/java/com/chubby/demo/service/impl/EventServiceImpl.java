@@ -86,6 +86,17 @@ public class EventServiceImpl implements EventService {
         return eventSeq;
     }
 
+    @Transactional
+    @Override
+    public void updateEventWage(Event event) {
+        eventDao.update(event);
+        wageDao.deleteByEventSeq(event.getEventSeq());
+        Employee emp = employeeDao.findById(event.getEmpId());
+        getWageList(event, emp.getHourWage()).forEach(wage -> {
+            wageDao.insert(wage);
+        });
+    }
+
     private List<Wage> getWageList(Event event, BigDecimal hourWage) {
         List<Wage> wageList = new ArrayList<>();
 

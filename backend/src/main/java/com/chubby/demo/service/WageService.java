@@ -20,4 +20,6 @@ public interface WageService {
 
     void delete(long wageSeq);
 
+    void deleteByEventSeq(long eventSeq);
+
 }

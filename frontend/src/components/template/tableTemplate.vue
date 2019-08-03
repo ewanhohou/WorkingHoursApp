@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(row, i) in tableData.rows" v-bind:key="i">
+            <tr v-for="(row, i) in tableData.rows" v-if="i >= show[0] && i < show[1]" v-bind:key="i">
                 <td v-for="(item, j) in row" v-if="j != 'id'" v-bind:key="j">{{item}}</td>
                 <td class="action">
                     <router-link :to="{name:`${$route.path}/modify/:id`, params:{id:row.id}}" class="btn">
@@ -23,9 +23,9 @@
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">上頁</a></li>
-            <li class="page-item" v-for="page in pages" v-bind:key="page"><a class="page-link" href="#">{{page}}</a></li>
-            <li class="page-item"><a class="page-link" href="#">下頁</a></li>
+            <li class="page-item" :class="{disabled: currPage == 1}"><a class="page-link" href="#" @click.stop.prevent="prePage">上頁</a></li>
+            <li class="page-item" :class="{active: currPage == page }" v-for="page in pages" v-bind:key="page"><a class="page-link" href="#" @click.stop.prevent="click(page)">{{page}}</a></li>
+            <li class="page-item" :class="{disabled: currPage == pages}"><a class="page-link" href="#" @click.stop.prevent="nextPage">下頁</a></li>
         </ul>
     </nav>
 </div>
@@ -40,18 +40,32 @@ export default {
     data() {
         return {
             pages: 0,
-            pageSize: 5
+            pageSize: 5,
+            show: [0, 5],
+            currPage: 1,
         };
     },
     watch: {
         'tableData.rows'(data) {
-            this.pages = Math.round(data.length / this.pageSize);
+            this.pages = Math.ceil(data.length / this.pageSize);
         }
     },
     methods: {
         deleteMethod(row, i) {
             if (!confirm('確定要刪除嗎？')) return;
             this.$emit('deleteMethod', row, i)
+        },
+        click(page) {
+            this.currPage = page;
+            this.show = [(page - 1) * this.pageSize, page * this.pageSize];
+        },
+        prePage() {
+            if (this.currPage != 1) this.currPage--;
+            this.click(this.currPage);
+        },
+        nextPage() {
+            if (this.currPage != this.pages) this.currPage++;
+            this.click(this.currPage);
         },
     }
 }

@@ -15,7 +15,8 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <div>
+                        <slot></slot>
+                        <div v-if="show">
                             <router-link :to="url"><button type="button" class="btn bg-maroon">新增</button></router-link>
                         </div>
                         <!-- <div class="box-tools pull-right">
@@ -25,7 +26,7 @@
                         </div> -->
                     </div>
                     <div class="box-body">
-                        <tableTemplate :tableData="tableData" @deleteMethod="deleteMethod"></tableTemplate>
+                        <tableTemplate :show="show" :tableData="tableData" @deleteMethod="deleteMethod"></tableTemplate>
                     </div>
                 </div>
             </div>
@@ -41,7 +42,8 @@ export default {
     props: {
         tableData: Object,
         title: String,
-        url: String
+        url: String,
+        show: Boolean
     },
     components: {
         tableTemplate,

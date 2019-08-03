@@ -4,13 +4,13 @@
         <thead>
             <tr>
                 <th v-for="(item, index) in tableData.title" v-bind:key="index">{{item}}</th>
-                <th></th>
+                <th v-if="show"></th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(row, i) in tableData.rows" v-if="i >= show[0] && i < show[1]" v-bind:key="i">
+            <tr v-for="(row, i) in tableData.rows" v-if="i >= showTr[0] && i < showTr[1]" v-bind:key="i">
                 <td v-for="(item, j) in row" v-if="j != 'id'" v-bind:key="j">{{item}}</td>
-                <td class="action">
+                <td class="action" v-if="show">
                     <router-link :to="{name:`${$route.path}/modify/:id`, params:{id:row.id}}" class="btn">
                         <i class="fa fa-pencil"></i>
                     </router-link>
@@ -36,12 +36,13 @@ export default {
     name: 'tableTemplate',
     props: {
         tableData: Object,
+        show: Boolean
     },
     data() {
         return {
             pages: 0,
             pageSize: 5,
-            show: [0, 5],
+            showTr: [0, 5],
             currPage: 1,
         };
     },
@@ -57,7 +58,7 @@ export default {
         },
         click(page) {
             this.currPage = page;
-            this.show = [(page - 1) * this.pageSize, page * this.pageSize];
+            this.showTr = [(page - 1) * this.pageSize, page * this.pageSize];
         },
         prePage() {
             if (this.currPage != 1) this.currPage--;

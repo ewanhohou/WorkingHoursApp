@@ -1,5 +1,5 @@
 <template>
-<mainTemplate :tableData="dt" url="/customers/modify" title="客戶" @deleteMethod="deleteMethod"></mainTemplate>
+<mainTemplate :show="true" :tableData="dt" url="/customers/modify" title="客戶" @deleteMethod="deleteMethod"></mainTemplate>
 </template>
 
 <script>

@@ -1,8 +1,7 @@
 <template>
 <inputTemplate :label="label">
-    <input v-model="number" type="number" class="form-control" :id="id" :placeholder="id">
+    <input v-model="number" type="number" step="0.01" class="form-control" :id="id" :placeholder="id">
     <i v-show="errorShow" class="fa fa-warning text-red"> {{label}}請輸入數字</i>
-
 </inputTemplate>
 </template>
 
@@ -25,7 +24,7 @@ export default {
     watch: {
         number(num) {
             if (this.regex()) this.errorShow = false;
-            this.$emit('input', parseInt(num));
+            this.$emit('input', parseFloat(num));
         },
         value(val) {
             this.number = val;
@@ -44,7 +43,7 @@ export default {
             return false;
         },
         regex() {
-            return this.number.toString().match("^[0-9]*$");
+            return this.number.toString().match("^[0-9]+\.[0-9]*$");
         }
     },
 }

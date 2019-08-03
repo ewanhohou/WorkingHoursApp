@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface EventDao {
 
-    @Select("SELECT * FROM event")
+    @Select("SELECT * FROM event order by event_seq desc")
     @Results(value = {
             @Result(property = "emp", column = "emp_id",
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById")),
@@ -19,7 +19,7 @@ public interface EventDao {
                     one = @One(select = "com.chubby.demo.dao.CustomerDao.findById"))})
     List<EventDTO> findAll();
 
-    @Select("SELECT * FROM event WHERE emp_id = #{empId}")
+    @Select("SELECT * FROM event WHERE emp_id = #{empId} order by event_seq desc")
     @Results(value = {
             @Result(property = "emp", column = "emp_id",
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById")),

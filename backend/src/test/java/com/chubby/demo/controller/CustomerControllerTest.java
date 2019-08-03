@@ -5,13 +5,14 @@ import com.chubby.demo.entity.Customer;
 import com.chubby.demo.service.impl.CustomerServiceImpl;
 import com.chubby.demo.service.impl.EmployeeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Slf4j
@@ -28,19 +29,19 @@ public class CustomerControllerTest extends AbstractControllerTest {
     public void testFindAll() throws Exception {
         Customer firstOne = mockFirstOne();
         testGet(URL)
-                .andExpect(jsonPath("$[0].cusId", Matchers.equalTo((int) firstOne.getCusId())))
-                .andExpect(jsonPath("$[0].name", Matchers.equalTo(firstOne.getName())))
-                .andExpect(jsonPath("$[0].mobile", Matchers.equalTo(firstOne.getMobile())))
-                .andExpect(jsonPath("$[0].address", Matchers.equalTo(firstOne.getAddress())));
+                .andExpect(jsonPath("$[0].cusId", is(notNullValue())))
+                .andExpect(jsonPath("$[0].name", is(notNullValue())))
+                .andExpect(jsonPath("$[0].mobile", is(notNullValue())))
+                .andExpect(jsonPath("$[0].address", is(notNullValue())));
     }
 
     @Test
     public void testNewOne() throws Exception {
         Customer newOne = mockNewOne();
         testPost(URL, super.mapToJson(newOne))
-                .andExpect(jsonPath("$.name", Matchers.equalTo(newOne.getName())))
-                .andExpect(jsonPath("$.mobile", Matchers.equalTo(newOne.getMobile())))
-                .andExpect(jsonPath("$.address", Matchers.equalTo(newOne.getAddress())));
+                .andExpect(jsonPath("$.name", is(newOne.getName())))
+                .andExpect(jsonPath("$.mobile", is(newOne.getMobile())))
+                .andExpect(jsonPath("$.address", is(newOne.getAddress())));
     }
 
     @Test

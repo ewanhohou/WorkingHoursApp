@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface EmployeeDao {
 
-    @Select("SELECT * FROM employee")
+    @Select("SELECT * FROM employee order by emp_id desc")
     List<Employee> findAll();
 
     @Select("SELECT * FROM employee WHERE emp_id = #{empId}")

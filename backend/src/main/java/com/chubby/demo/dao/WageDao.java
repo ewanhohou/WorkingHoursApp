@@ -11,13 +11,13 @@ import java.util.List;
 @Mapper
 public interface WageDao {
 
-    @Select("SELECT * FROM wage")
+    @Select("SELECT * FROM wage order by wage_seq desc")
     @Results(value = {
             @Result(property = "emp", column = "emp_id",
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})
     List<WageDTO> findAll();
 
-    @Select("SELECT * FROM wage WHERE emp_id = #{empId}")
+    @Select("SELECT * FROM wage WHERE emp_id = #{empId} order by wage_seq desc")
     @Results(value = {
             @Result(property = "emp", column = "emp_id",
                     one = @One(select = "com.chubby.demo.dao.EmployeeDao.findById"))})

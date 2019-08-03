@@ -10,7 +10,6 @@ import month from '@/components/validations/month';
 import {
     api
 } from '@/resource';
-import moment from 'moment'
 
 export default {
     name: 'wage',

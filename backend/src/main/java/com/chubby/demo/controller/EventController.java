@@ -1,5 +1,6 @@
 package com.chubby.demo.controller;
 
+import com.chubby.demo.constant.ApiUrlConstant;
 import com.chubby.demo.dto.EventDTO;
 import com.chubby.demo.entity.Event;
 import com.chubby.demo.exception.NotFoundException;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping(ApiUrlConstant.EVENT_API)
 public class EventController extends AbstractBaseController {
 
     @Autowired

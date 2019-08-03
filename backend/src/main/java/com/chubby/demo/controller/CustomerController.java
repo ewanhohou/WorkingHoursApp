@@ -1,5 +1,6 @@
 package com.chubby.demo.controller;
 
+import com.chubby.demo.constant.ApiUrlConstant;
 import com.chubby.demo.entity.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/customers")
+@RequestMapping(ApiUrlConstant.CUSTOMER_API)
 public class CustomerController extends AbstractBaseController {
 
 

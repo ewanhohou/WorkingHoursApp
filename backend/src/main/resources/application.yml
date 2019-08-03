@@ -1,5 +1,8 @@
 server:
   port: 8088
+  error:
+    whitelabel:
+      enabled: false
 spring:
   application:
     name: WorkingHoursApp
@@ -20,6 +23,9 @@ mybatis:
 
 com:
   chubby:
+    #start work 8:00 am
     start-work: 8
+    #end work 16:00 pm
     end-work: 16
+    #one day max work hour
     max-work-hour: 8

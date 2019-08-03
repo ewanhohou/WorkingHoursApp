@@ -1,5 +1,6 @@
 package com.chubby.demo.controller;
 
+import com.chubby.demo.constant.ApiUrlConstant;
 import com.chubby.demo.dto.EmployeeWageDTO;
 import com.chubby.demo.dto.WageDTO;
 import com.chubby.demo.entity.Wage;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/wages")
+@RequestMapping(ApiUrlConstant.WAGE_API)
 public class WageController extends AbstractBaseController {
 
     @Autowired

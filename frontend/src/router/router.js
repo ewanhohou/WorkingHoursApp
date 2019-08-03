@@ -22,6 +22,8 @@ let pages = {
     import('@/views/event/modify'),
   '/events/modify/:id': () =>
     import('@/views/event/modify'),
+  '/wages': () =>
+    import('@/views/wage/index'),
 };
 
 let routes = [{

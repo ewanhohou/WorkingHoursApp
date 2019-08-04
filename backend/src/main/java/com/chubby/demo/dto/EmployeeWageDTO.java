@@ -11,5 +11,6 @@ public class EmployeeWageDTO {
     private String name;
     private int year;
     private int month;
+    private BigDecimal totalHour;
     private BigDecimal totalWage;
 }

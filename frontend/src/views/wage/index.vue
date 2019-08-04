@@ -5,16 +5,14 @@
 </template>
 
 <script>
-import mainTemplate from '@/components/template/mainTemplate';
-import month from '@/components/validations/month';
-import {
-    api
-} from '@/resource';
+    import mainTemplate from '@/components/template/mainTemplate';
+    import month from '@/components/validations/month';
+    import {api} from '@/resource';
 
-export default {
+    export default {
     name: 'wage',
     data() {
-        const title = ['姓名', '日期', '薪資'];
+        const title = ['姓名', '日期', '工時(Hour)', '薪資'];
         return {
             dt: {
                 title: title,
@@ -33,6 +31,7 @@ export default {
                 return {
                     name: m.name,
                     date: `${m.year}/${m.month}`,
+                    hour: m.totalHour,
                     wage: m.totalWage,
                 };
             });

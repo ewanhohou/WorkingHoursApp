@@ -52,7 +52,7 @@ public class WageController extends AbstractBaseController {
                 .orElseThrow(() -> new NotFoundException("Employee", id));
     }
 
-    @GetMapping("/{year}/{month}")
+    @GetMapping("/{month}/{year}")
     @ResponseStatus(HttpStatus.OK)
     public List<EmployeeWageDTO> findByMonth(@PathVariable @Min(2000) int year, @PathVariable @Min(1) @Max(12) int month) {
         return this.employeeWageService.findByMonth(year, month)

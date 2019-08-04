@@ -5,8 +5,12 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import requestHelper from '@/helpers/requestHelper';
-
+import VueSweetalert2 from 'vue-sweetalert2';
+ 
+import 'sweetalert2/dist/sweetalert2.min.css';
+ 
 Vue.use(VueAxios, axios)
+Vue.use(VueSweetalert2);
 
 Vue.config.productionTip = false
 Vue.prototype.$handleError = requestHelper.handleError;

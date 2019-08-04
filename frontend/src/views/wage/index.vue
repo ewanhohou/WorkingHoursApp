@@ -29,6 +29,7 @@ export default {
     methods: {
         setMonth(month) {
             api(`wages/${month}`).then(res => {
+                if (res.data.length == 0) this.$swal('查無資料');
                 this.dt.rows = res.data.map(m => {
                     return {
                         name: m.name,

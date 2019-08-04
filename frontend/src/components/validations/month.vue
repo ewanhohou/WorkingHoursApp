@@ -5,7 +5,7 @@
             <date-picker v-model="month" :config="options"></date-picker>
             <span class="icon"><i class="fa fa-calendar"></i></span>
             <span class="input-group-btn">
-                <button class="btn btn-primary btn-flat" :class="{disabled: month == ''}" type="submit" @click.stop.prevent="submit">查詢</button>
+                <button class="btn btn-primary btn-flat" :class="{disabled: month == null}" type="submit" @click.stop.prevent="submit">查詢</button>
             </span>
         </div>
     </div>
@@ -19,9 +19,9 @@ export default {
     name: 'month',
     data() {
         return {
-            month: '',
+            month: null,
             options: {
-                format: 'YYYY/MM',
+                format: 'MM/YYYY',
                 useCurrent: false,
                 viewMode: 'months',
                 locale: 'zh-TW'
@@ -30,7 +30,8 @@ export default {
     },
     methods: {
         submit() {
-            this.$emit('setMonth', this.month);
+            if (this.month != null)
+                this.$emit('setMonth', this.month);
         }
     },
     components: {

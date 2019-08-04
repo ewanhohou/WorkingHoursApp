@@ -5,11 +5,13 @@
 </template>
 
 <script>
-    import mainTemplate from '@/components/template/mainTemplate';
-    import month from '@/components/validations/month';
-    import {api} from '@/resource';
+import mainTemplate from '@/components/template/mainTemplate';
+import month from '@/components/validations/month';
+import {
+    api
+} from '@/resource';
 
-    export default {
+export default {
     name: 'wage',
     data() {
         const title = ['姓名', '日期', '工時(Hour)', '薪資'];
@@ -25,17 +27,17 @@
         month
     },
     methods: {
-        setMonth(month){
+        setMonth(month) {
             api(`wages/${month}`).then(res => {
-            this.dt.rows = res.data.map(m => {
-                return {
-                    name: m.name,
-                    date: `${m.year}/${m.month}`,
-                    hour: m.totalHour,
-                    wage: m.totalWage,
-                };
-            });
-        }).catch(this.$handleError);
+                this.dt.rows = res.data.map(m => {
+                    return {
+                        name: m.name,
+                        date: `${m.month}/${m.year}`,
+                        hour: m.totalHour,
+                        wage: `$${m.totalWage.toLocaleString()}`,
+                    };
+                });
+            }).catch(this.$handleError);
         }
     }
 };

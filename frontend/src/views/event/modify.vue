@@ -5,7 +5,7 @@
             <selectValid label="客戶" :options="customers" v-model="form.cusId"></selectValid>
             <selectValid label="雇員" :options="employees" v-model="form.empId"></selectValid>
             <dateTimePicker ref="dt" @setStartTime="setStartTime" @setEndTime="setEndTime" v-model="form.startTime" :startTimeOld="form.startTime" :endTimeOld="form.endTime"></dateTimePicker>
-            <button type="submit" id="submit" class="btn pull-right margin bg-maroon">送出</button>
+            <button type="submit" id="submit" class="btn pull-right margin bg-maroon">確認</button>
         </form>
     </modifyTemplate>
     <modalTemplate ref="popup" title="確認" @submit="submit">

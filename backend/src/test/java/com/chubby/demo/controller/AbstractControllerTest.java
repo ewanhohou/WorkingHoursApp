@@ -59,13 +59,20 @@ public abstract class AbstractControllerTest {
                 .andExpect(status().isOk());
     }
 
+    protected ResultActions testPut(String url, String inputJson, boolean isMatchInput) throws Exception {
+        ResultActions resultActions = testPut(url, inputJson);
+        if (isMatchInput) {
+            resultActions.andExpect(content().string(Matchers.equalTo(inputJson)));
+        }
+        return resultActions;
+    }
+
     protected ResultActions testPut(String url, String inputJson) throws Exception {
         return mockMvc.perform(MockMvcRequestBuilders
                 .put(url)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string(Matchers.equalTo(inputJson)));
+                .andExpect(status().isOk());
     }
 
     protected ResultActions testPost(String url, String inputJson) throws Exception {

@@ -1,17 +1,17 @@
 INSERT INTO Employee (emp_id, name, mobile, address, hour_wage)
-VALUES (1, 'Ewan', '043233232', 'Sydney', 20);
+VALUES (1, 'Ewan', '0432332321', 'Sydney', 20);
 INSERT INTO Employee (emp_id, name, mobile, address, hour_wage)
-VALUES (2, 'LuLu', '047778777', 'TAS', 30);
+VALUES (2, 'LuLu', '0477787771', 'TAS', 30);
 INSERT INTO Employee (emp_id, name, mobile, address, hour_wage)
-VALUES (3, 'Euphy', '04755555', 'MEL', 20);
+VALUES (3, 'Euphy', '0475555511', 'MEL', 20);
 
 
 INSERT INTO customer (cus_id, name, mobile, address)
-VALUES (1, 'Tim', '093132323', 'TAIWAN');
+VALUES (1, 'Tim', '0931323231', 'TAIWAN');
 INSERT INTO customer (cus_id, name, mobile, address)
-VALUES (2, 'Misa', '04699696', 'Japan');
+VALUES (2, 'Misa', '0469969611', 'Japan');
 INSERT INTO customer (cus_id, name, mobile, address)
-VALUES (3, 'Andy', '049969655', 'French');
+VALUES (3, 'Andy', '0499696551', 'French');
 
 INSERT INTO event (event_seq, emp_id, cus_id, start_time, end_time)
 VALUES (1, 1, 1, '2019-07-22 08:00:00', '2019-07-23 15:00:00');

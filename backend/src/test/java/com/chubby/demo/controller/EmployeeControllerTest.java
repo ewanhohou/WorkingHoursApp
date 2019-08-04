@@ -31,15 +31,16 @@ public class EmployeeControllerTest extends AbstractControllerTest {
     @Test
     public void testFindAll() throws Exception {
         testGet(URL)
-                .andExpect(jsonPath("$[0].empId", is(notNullValue())))
-                .andExpect(jsonPath("$[0].name", is(notNullValue())))
-                .andExpect(jsonPath("$[0].mobile", is(notNullValue())))
-                .andExpect(jsonPath("$[0].address", is(notNullValue())))
-                .andExpect(jsonPath("$[0].hourWage", is(notNullValue())));
+                .andExpect(jsonPath("$[*].empId", is(notNullValue())))
+                .andExpect(jsonPath("$[*].name", is(notNullValue())))
+                .andExpect(jsonPath("$[*].mobile", is(notNullValue())))
+                .andExpect(jsonPath("$[*].address", is(notNullValue())))
+                .andExpect(jsonPath("$[*].hourWage", is(notNullValue())));
 
     }
 
     @Test
+    @Transactional
     public void testNewOne() throws Exception {
         Employee newOne = mockNewOne();
         testPost(URL, super.mapToJson(newOne))
@@ -61,7 +62,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
         Employee firstOne = mockFirstOne();
         Employee newOne = mockNewOne();
         newOne.setEmpId(firstOne.getEmpId());
-        testPut(URL + "/" + firstOne.getEmpId(), super.mapToJson(newOne));
+        testPut(URL + "/" + firstOne.getEmpId(), super.mapToJson(newOne), true);
     }
 
     @Test
@@ -73,7 +74,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
     private Employee mockNewOne() {
         Employee emp = new Employee();
         emp.setName("Ginger");
-        emp.setMobile("044444");
+        emp.setMobile("0444441111");
         emp.setAddress("NSW");
         emp.setHourWage(new BigDecimal(35));
         return emp;
@@ -83,7 +84,7 @@ public class EmployeeControllerTest extends AbstractControllerTest {
         Employee emp = new Employee();
         emp.setEmpId(1);
         emp.setName("Ewan");
-        emp.setMobile("043233232");
+        emp.setMobile("0432332321");
         emp.setAddress("Sydney");
         emp.setHourWage(new BigDecimal(20));
         return emp;

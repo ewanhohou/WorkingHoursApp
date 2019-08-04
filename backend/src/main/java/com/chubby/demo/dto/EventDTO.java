@@ -4,14 +4,14 @@ import com.chubby.demo.entity.Customer;
 import com.chubby.demo.entity.Employee;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 public class EventDTO {
 
-    private Long eventSeq;
+    private long eventSeq;
     private Employee emp;
     private Customer cus;
-    private Date startTime;
-    private Date endTime;
+    private Timestamp startTime;
+    private Timestamp endTime;
 }

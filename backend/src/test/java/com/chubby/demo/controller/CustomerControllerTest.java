@@ -29,13 +29,14 @@ public class CustomerControllerTest extends AbstractControllerTest {
     public void testFindAll() throws Exception {
         Customer firstOne = mockFirstOne();
         testGet(URL)
-                .andExpect(jsonPath("$[0].cusId", is(notNullValue())))
-                .andExpect(jsonPath("$[0].name", is(notNullValue())))
-                .andExpect(jsonPath("$[0].mobile", is(notNullValue())))
-                .andExpect(jsonPath("$[0].address", is(notNullValue())));
+                .andExpect(jsonPath("$[*].cusId", is(notNullValue())))
+                .andExpect(jsonPath("$[*].name", is(notNullValue())))
+                .andExpect(jsonPath("$[*].mobile", is(notNullValue())))
+                .andExpect(jsonPath("$[*].address", is(notNullValue())));
     }
 
     @Test
+    @Transactional
     public void testNewOne() throws Exception {
         Customer newOne = mockNewOne();
         testPost(URL, super.mapToJson(newOne))
@@ -56,7 +57,7 @@ public class CustomerControllerTest extends AbstractControllerTest {
         Customer firstOne = mockFirstOne();
         Customer newOne = mockNewOne();
         newOne.setCusId(firstOne.getCusId());
-        testPut(URL + "/" + firstOne.getCusId(), super.mapToJson(newOne));
+        testPut(URL + "/" + firstOne.getCusId(), super.mapToJson(newOne), true);
     }
 
     @Test
@@ -68,7 +69,7 @@ public class CustomerControllerTest extends AbstractControllerTest {
     private Customer mockNewOne() {
         Customer cus = new Customer();
         cus.setName("Ginger");
-        cus.setMobile("044444");
+        cus.setMobile("0444441111");
         cus.setAddress("NSW");
         return cus;
     }
@@ -77,7 +78,7 @@ public class CustomerControllerTest extends AbstractControllerTest {
         Customer cus = new Customer();
         cus.setCusId(1);
         cus.setName("Tim");
-        cus.setMobile("093132323");
+        cus.setMobile("0931323231");
         cus.setAddress("TAIWAN");
         return cus;
     }

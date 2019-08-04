@@ -1,6 +1,6 @@
 <template>
 <inputTemplate :label="label">
-    <input-mask v-model="tel" mask="0499999999" :id="id" :placeholder="id" class="form-control"></input-mask>
+    <input-mask v-model="tel" mask="9999999999" :id="id" :placeholder="id" class="form-control"></input-mask>
     <i v-show="errorShow" class="fa fa-warning text-red"> {{label}}格式錯誤 (例：0422791640)</i>
 </inputTemplate>
 </template>
@@ -36,7 +36,7 @@ export default {
             return false;
         },
         regex() {
-            return this.tel.match(/^04\d{8}$/);
+            return this.tel.match(/[0-9]{10}/);
         }
     },
     props: {

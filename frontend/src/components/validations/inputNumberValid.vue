@@ -1,7 +1,7 @@
 <template>
 <inputTemplate :label="label">
     <input v-model="number" type="number" step="0.01" class="form-control" :id="id" :placeholder="id">
-    <i v-show="errorShow" class="fa fa-warning text-red"> {{label}}請輸入數字</i>
+    <i v-show="errorShow" class="fa fa-warning text-red"> {{label}}請輸入數字，小數點後兩位(例：24.11)</i>
 </inputTemplate>
 </template>
 
@@ -43,7 +43,7 @@ export default {
             return false;
         },
         regex() {
-            return this.number.toString().match("^[0-9]+\.[0-9]*$");
+            return this.number.toString().match("^[0-9]+(?:\.[0-9]{1,2})?$");
         }
     },
 }

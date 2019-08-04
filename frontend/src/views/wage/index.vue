@@ -5,13 +5,11 @@
 </template>
 
 <script>
-import mainTemplate from '@/components/template/mainTemplate';
-import month from '@/components/validations/month';
-import {
-    api
-} from '@/resource';
+    import mainTemplate from '@/components/template/mainTemplate';
+    import month from '@/components/validations/inputMonthValid';
+    import {api} from '@/resource';
 
-export default {
+    export default {
     name: 'wage',
     data() {
         const title = ['姓名', '月份', '工時(Hour)', '薪資'];

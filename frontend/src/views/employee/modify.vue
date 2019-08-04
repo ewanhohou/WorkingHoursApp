@@ -6,7 +6,7 @@
             <inputTel ref="mobile" label="電話" id="Mobile" v-model="form.mobile"></inputTel>
             <inputText ref="address" label="地址" id="Address" v-model="form.address"></inputText>
             <inputNumber ref="price" label="時薪" id="price" v-model="form.hourWage"></inputNumber>
-            <button type="submit" id="submit" class="btn pull-right margin bg-maroon" @click.stop.prevent="popup">送出</button>
+            <button type="submit" id="submit" class="btn pull-right margin bg-maroon" @click.stop.prevent="popup">確認</button>
         </form>
     </modifyTemplate>
     <modalTemplate ref="popup" title="確認" @submit="submit">

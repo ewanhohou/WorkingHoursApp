@@ -14,7 +14,7 @@ import {
 export default {
     name: 'wage',
     data() {
-        const title = ['姓名', '日期', '工時(Hour)', '薪資'];
+        const title = ['姓名', '月份', '工時(Hour)', '薪資'];
         return {
             dt: {
                 title: title,

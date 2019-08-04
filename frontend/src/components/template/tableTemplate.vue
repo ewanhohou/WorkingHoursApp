@@ -53,8 +53,14 @@ export default {
     },
     methods: {
         deleteMethod(row, i) {
-            if (!confirm('確定要刪除嗎？')) return;
-            this.$emit('deleteMethod', row, i)
+            this.$swal({
+                title: '確定要刪除嗎？',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.value) this.$emit('deleteMethod', row, i)
+            });
         },
         click(page) {
             this.currPage = page;
